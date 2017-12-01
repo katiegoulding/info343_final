@@ -25,6 +25,7 @@ export default class SignUp extends React.Component {
         return(
             <div className="container">
                 <h1>Sign Up</h1>
+                
                 <form onSubmit={evt => this.handleSignUp(evt)}>
                     <div className="form-group">
                         <label htmlFor="email">Email: </label>
