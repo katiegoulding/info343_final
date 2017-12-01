@@ -38,11 +38,12 @@ export default class SignInForm extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-success">
+                        <button type="submit" className="btn btn-default">
                             Sign In
                         </button>
                     </div>
 
+                    {/* Wrap sign up with link */}
                     <p>Don't have an account yet? Sign Up.</p>
                 </form>
             </div>
