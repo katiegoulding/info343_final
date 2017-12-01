@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import SignUpForm from './components/SignUpForm';
 import './App.css';
-import SignInForm from './components/SignInForm'
-import HeaderBar from './components/HeaderBar' 
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import constants from "./components/constants";
+
+import SignInForm from './components/SignInForm';
+import SignUpForm from './components/SignUpForm';
+import Homepage from './components/Homepage'; 
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <HeaderBar/>
-        <SignUpForm />
-        <SignInForm/>
+      <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path={constants.routes.home} component={Homepage} />
+          <Route path={constants.routes.signin} component={SignInForm} />
+          <Route path={constants.routes.signup} component={SignUpForm} />
+        </Switch>
+      </Router>
       </div>
     );
   }

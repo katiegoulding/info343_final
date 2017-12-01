@@ -1,7 +1,7 @@
 export default {
     routes: {
-        home: "/signin",       
-        signin: "/",
+        home: "/",       
+        signin: "/signin",
         signup: "/signup",
     }
 }
