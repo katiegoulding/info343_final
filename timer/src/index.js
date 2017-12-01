@@ -11,8 +11,7 @@ import "firebase/database";
 var config = {
     apiKey: "AIzaSyARE45Qi4idoyl8i_k2_Z49bOamBCrwq00",
     authDomain: "final-project-343.firebaseapp.com",
-    databaseURL: "https://final-project-343.firebaseio.com",
-    projectId: "final-project-343",
+    databaseURL: "https://final-project-343.firebaseio.com/",
     messagingSenderId: "74000220836"
 };
 
