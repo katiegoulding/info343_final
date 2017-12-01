@@ -14,6 +14,8 @@ export default class SignUp extends React.Component {
             email: "",
             password: "",
             passwordConfirm: "",
+            displayName: "",            
+            zipcode: "",
         }
     }
 
@@ -30,7 +32,6 @@ export default class SignUp extends React.Component {
                 <HeaderBar />
                 <div className="container">
                     <h1>Sign Up</h1>
-
                     <form onSubmit={evt => this.handleSignUp(evt)}>
                         <div className="form-group">
                             <label htmlFor="email">Email: </label>
@@ -42,7 +43,7 @@ export default class SignUp extends React.Component {
                                 value={this.state.email}
                                 onInput={(evt) => this.setState({email: evt.target.value})}
                             />                        
-                        </div>                     
+                        </div>                    
                         <div className="form-group">
                             <label htmlFor="password">Password (minimum of 6 characters): </label>
                             <input 
@@ -65,13 +66,36 @@ export default class SignUp extends React.Component {
                                 onInput={(evt) => this.setState({passwordConfirm: evt.target.value})}
                             />                        
                         </div>
+                        <hr></hr>
+                        <div className="form-group">
+                            <label htmlFor="displayName">Display Name: </label>
+                            <input 
+                                id="displayNameSignUp" 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="enter the name you would like displayed" 
+                                value={this.state.displayName}
+                                onInput={evt => this.setState({displayName: evt.target.value})}
+                            />
+                        </div> 
+                        <div className="form-group">
+                            <label htmlFor="zipcode">Zipcode: </label>
+                            <input 
+                                id="zipcode" 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Enter your zipcode" 
+                                value={this.state.zipcode}
+                                onInput={evt => this.setState({zipcode: evt.target.value})}
+                            />
+                        </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-default">
                                 Sign Up
                             </button>
                         </div>
                     </form>
-                    <p>Already have an account? <Link to={constants.routes.signin}>Sign in!</Link></p>
+                    <p> Already have an account? <Link to={constants.routes.signin}> Sign in! </Link> </p>
                 </div>
             </div>
         );
