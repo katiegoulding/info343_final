@@ -3,8 +3,8 @@ import firebase from "firebase/app";
 import { Link } from "react-router-dom";
 import constants from "./constants";
 import HeaderBar from './HeaderBar';
-// import "firebase/auth";
-// import "firebase/databse";
+import "firebase/auth";
+import "firebase/database";
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -19,11 +19,30 @@ export default class SignUp extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.authUnsub = firebase.auth().onAuthStateChanged(user => {
+            this.setState({currentUser: user});
+        });
+    }
+
+    componentWillUnmount() {
+        this.authUnsub();
+    }
+
     handleSignUp(evt) {
         evt.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(user => user.updateProfile({
+                displayName: this.state.displayName
+            }))
             .catch(err => this.setState({errorMessage: err.message})
         );
+
+        firebase.auth().onAuthStateChanged(user => {
+            if(this.state.currentUser) {
+                this.props.history.push(constants.routes.main);
+            } 
+        });
     }
 
     render() {
@@ -70,7 +89,7 @@ export default class SignUp extends React.Component {
                         <div className="form-group">
                             <label htmlFor="displayName">Display Name: </label>
                             <input 
-                                id="displayNameSignUp" 
+                                id="displayName" 
                                 type="text" 
                                 className="form-control" 
                                 placeholder="enter the name you would like displayed" 

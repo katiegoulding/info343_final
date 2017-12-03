@@ -17,10 +17,25 @@ export default class SignInForm extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.authUnsub = firebase.auth().onAuthStateChanged(user => {
+            this.setState({currentUser: user});
+        });        
+    }
+
+    componentWillUnmount() {
+        this.authUnsub();
+    }
+
     handleSignIn(evt) {
         evt.preventDefault();        
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .catch(err => this.setState({errorMessage: err.message}));        
+        
+        // More secure way to do this than an if statement?
+        if(this.state.currentUser) {
+            this.props.history.push(constants.routes.main);
+        } 
     }
 
     render() {
