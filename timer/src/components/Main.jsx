@@ -39,16 +39,19 @@ export default class Main extends React.Component {
                 <HeaderBar currentUser={this.state.currentUser} />
                 <div className="container">
                     <div id="welcome">
-                        
                         <h1>Welcome {this.state.currentUser.email}</h1>
                         {/* Display name only shows after page reloads ? */}
                         <h1> {this.state.currentUser.displayName} </h1> 
-                        <hr></hr>
                     </div>
+
+                    <hr></hr>
+                    <Link to={constants.routes.timer}>
                     <div id="showerTimer">
                         <img src={timerIcon} alt="timer" />
                         <p> Shower Timer </p>
                     </div>
+                    </Link>
+
                     <hr></hr>
                     <Link to={constants.routes.myData}>
                     <div id="myData">
@@ -56,22 +59,23 @@ export default class Main extends React.Component {
                         <p> My Data </p>
                     </div>
                     </Link>
-                    <hr></hr>
 
+                    <hr></hr>
                     <Link to={constants.routes.dataComp}>
                     <div id="dataComp">
                         <img src={comparisonIcon} alt="data comparison" />
                         <p> Data Comparison </p>
                     </div>
                     </Link>
-                    <hr></hr>
 
+                    <hr></hr>
                     <Link to={constants.routes.settings}>
                     <div id="settings">
                         <img src={settingsIcon} alt="settings" />
                         <p> Settings </p>
                     </div>
                     </Link>
+                    
                     <hr></hr>
                 </div>
             </div>
