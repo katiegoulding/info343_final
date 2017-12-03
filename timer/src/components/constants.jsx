@@ -6,6 +6,7 @@ export default {
         main: "/main",
         myData: "/myData",
         dataComp: "/compare",
+        timer: "/timer",
         settings: "/settings",
     }
 }
