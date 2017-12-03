@@ -38,7 +38,7 @@ export default class SignInForm extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-default">
+                        <button type="submit" className="btn btn-dark">
                             Sign In
                         </button>
                     </div>
