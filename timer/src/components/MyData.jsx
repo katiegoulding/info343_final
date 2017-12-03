@@ -4,7 +4,7 @@ import React from "react";
 // import 'firebase/database';
 // import { Link } from "react-router-dom";
 // import constants from './constants'
-import HeaderBar from './HeaderBar'
+import Chart from './Chart';
 
 export default class MyData extends React.Component {
     constructor(props) {
@@ -17,9 +17,9 @@ export default class MyData extends React.Component {
     render() {
         return(
             <div>
-                <HeaderBar />
                 <div className="container">
                     <h1>My Data</h1>
+                    <Chart />
                 </div>
             </div>
         );

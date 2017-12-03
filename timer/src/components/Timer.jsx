@@ -5,6 +5,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 // import constants from './constants'
 import HeaderBar from './HeaderBar'
+// Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
 
 const formattedSeconds = (sec) =>
 Math.floor(sec / 60) +
