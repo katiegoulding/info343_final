@@ -64,7 +64,7 @@ export default class Timer extends React.Component {
                 selectedLowFlow: " btn-info",
                 selectedRegular: ""
             })
-        } else {
+        } else if (this.state.toggleRegular == " active"){
             this.setState({
                 toggleLowFlow: " disabled",
                 toggleRegular: " disabled",
