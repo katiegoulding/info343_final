@@ -4,7 +4,7 @@ import React from "react";
 // import 'firebase/database';
 // import { Link } from "react-router-dom";
 // import constants from './constants'
-import {Bar, Line} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 export default class Chart extends React.Component {
     constructor(props){
