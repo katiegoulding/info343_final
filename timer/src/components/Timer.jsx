@@ -21,13 +21,10 @@ export default class Timer extends React.Component {
           waterSaverShowerHead: false,
           regularShowerHead: true,
           totalWaterUsed: 0,
-          currentUser: null,
-          reset: false,
-          secondsShowered: 0,
           toggleLowFlow: "",
           toggleRegular: "",
           selectedLowFlow: "",
-          selectedRegular: ""
+          selectedRegular: " active"
         };
         this.incrementer = null;
     }  
@@ -64,7 +61,7 @@ export default class Timer extends React.Component {
                 selectedLowFlow: " btn-info",
                 selectedRegular: ""
             })
-        } else if (this.state.toggleRegular == " active"){
+        } else {
             this.setState({
                 toggleLowFlow: " disabled",
                 toggleRegular: " disabled",
@@ -74,11 +71,9 @@ export default class Timer extends React.Component {
         }
         this.incrementer = setInterval( () =>
           this.setState({
-            secondsElapsed: this.state.secondsElapsed + 1,
-            reset: false,
+            secondsElapsed: this.state.secondsElapsed + 1
           })
-        , 1000);      
-        console.log(this.state.reset)      
+        , 1000);
     }
 
     handleResetClick() {
@@ -90,30 +85,30 @@ export default class Timer extends React.Component {
         })
         clearInterval(this.incrementer);
         this.setState({
-          secondsShowered: this.state.secondsElapsed,
           secondsElapsed: 0,
-          reset: true,
-        });      
-
-        //get amount of time:
-        let waterMultiplier = 0;
-        if(this.state.waterSaverShowerHead) {
-            waterMultiplier = (1 / 30);
-        } else {
-            waterMultiplier = (2.5 / 60);
-        }
-
-        //make sure time is converted to minutes:
-        this.setState({
-            totalWaterUsed: (this.state.secondsShowered * waterMultiplier)
-        }); 
+          laps: []
+        });
     }
 
     handleStopClick() {
         clearInterval(this.incrementer);
         this.setState({
           lastClearedIncrementer: this.incrementer
-        });        
+        });
+
+        //get amount of time:
+        let waterMultiplier = 0;
+        console.log(this.state.secondsElapsed);
+        if(this.state.waterSaverShowerHead) {
+            waterMultiplier = .5;
+        } else {
+            waterMultiplier = 1;
+        }
+
+        //make sure time is converted to minutes:
+        this.setState({
+            totalWaterUsed: (this.state.secondsElapsed * waterMultiplier)
+        }); 
     }
 
     componentDidMount() {
@@ -123,7 +118,9 @@ export default class Timer extends React.Component {
             });            
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
-            }            
+            }
+            console.log(this.state.currentUser) 
+            
         }); 
     }
 
@@ -134,7 +131,7 @@ export default class Timer extends React.Component {
     render() {
         return (
             <div>
-                <HeaderBar currentUser={this.state.currentUser}/>
+                <HeaderBar />
                 <div className="container">
                     <div>
                         <h1>Shower Timer</h1>
@@ -151,30 +148,22 @@ export default class Timer extends React.Component {
                 
                         {(this.state.secondsElapsed === 0 ||
                             this.incrementer === this.state.lastClearedIncrementer
-                            ? <button className="btn btn-dark" onClick={this.handleStartClick.bind(this)}>Start</button>
-                            : <div><button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>Pause</button>
-                             <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>I'm Done Showering!</button></div>
-
+                            ? <button className="btn btn-dark" onClick={this.handleStartClick.bind(this)}>start</button>
+                            : <button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>pause</button> 
                         )}
                     
                         {(this.state.secondsElapsed !== 0 &&
                             this.incrementer === this.state.lastClearedIncrementer
-                            ? <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>I'm Done Showering!</button>
+                            ? <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>clear</button>
                             : null
                         )}
                     </div>
 
                     <div>
-                        {( this.state.reset === true  ?
-                            <div>
-                                <h3>Results:</h3> 
-                                {/* correct gallons report */}
-                                <p>You used { this.state.totalWaterUsed } gallons</p>
-                                {( this.state.secondsShowered < 60 ? 
-                                    <p>You showered for {this.state.secondsShowered} seconds. </p>
-                                  : <p>You showered for {Math.floor(this.state.secondsShowered / 60)} minutes and {(this.state.secondsShowered % 60)} seconds</p> )}
-                            </div>
-                            : null)}    
+                        {/* <h3>Results:</h3> 
+                            <p>You used x gallons</p>
+                            <p>You showered for x minutes</p>
+                        */}
                     </div>
                 </div>
             </div>
