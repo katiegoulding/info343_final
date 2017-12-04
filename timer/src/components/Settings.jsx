@@ -1,9 +1,9 @@
 import React from "react";
-// import firebase from "firebase/app";
-// import 'firebase/auth';
-// import 'firebase/database';
-// import { Link } from "react-router-dom";
-// import constants from './constants'
+import firebase from "firebase/app";
+import 'firebase/auth';
+import 'firebase/database';
+import { Link } from "react-router-dom";
+import constants from './constants'
 import HeaderBar from './HeaderBar'
 
 export default class Settings extends React.Component {
@@ -12,6 +12,21 @@ export default class Settings extends React.Component {
         this.state = {
         
         }
+    }
+
+    componentDidMount() {
+        this.authUnsub = firebase.auth().onAuthStateChanged(user => {
+            this.setState({
+                currentUser: user, 
+            });            
+            if(this.state.currentUser === null) {
+                this.props.history.push(constants.routes.home);
+            }
+        });  
+    }
+
+    componentWillUnmount() {
+        this.authUnsub();
     }
 
     render() {

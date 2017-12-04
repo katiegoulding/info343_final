@@ -26,10 +26,16 @@ export default class Main extends React.Component {
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             }
-        });  
+            console.log(this.state.currentUser) 
+            let zipRef = firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL));
+            zipRef.push({ 
+                userID: this.state.currentUser.uid, 
+                debugging: "testing123"
+            }); 
+        });          
     }
-
-    componentWillUnmount() {
+    
+    componentWillUnmount() {        
         this.authUnsub();
     }
 
@@ -55,7 +61,7 @@ export default class Main extends React.Component {
                     </Link>
 
                     <hr></hr>
-                    <Link to={constants.routes.myData}>
+                    <Link to={constants.routes.myData} currentuser={this.state.currentUser}>
                     <div id="myData">
                             <img src={profileIcon} alt="profile" />
                         <p> My Data </p>

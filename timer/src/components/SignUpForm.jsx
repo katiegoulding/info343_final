@@ -25,22 +25,24 @@ export default class SignUp extends React.Component {
         });
     }
 
-    componentWillUnmount() {
+    componentWillUnmount() {     
         this.authUnsub();
     }
 
     handleSignUp(evt) {
         evt.preventDefault();
+        console.log(this.state.zipcode);
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => user.updateProfile({
-                displayName: this.state.displayName
+                displayName: this.state.displayName,
+                photoURL: this.state.zipcode,
             }))
             .catch(err => this.setState({errorMessage: err.message})
         );
 
         firebase.auth().onAuthStateChanged(user => {
             if(this.state.currentUser) {
-                this.props.history.push(constants.routes.main);
+                window.location.href = constants.routes.main;
             } 
         });
     }
