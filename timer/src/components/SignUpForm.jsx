@@ -42,7 +42,7 @@ export default class SignUp extends React.Component {
 
         firebase.auth().onAuthStateChanged(user => {
             if(this.state.currentUser) {
-                this.props.history.push(constants.routes.main);
+                window.location.href = constants.routes.main;
             } 
         });
     }

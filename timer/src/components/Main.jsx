@@ -26,20 +26,20 @@ export default class Main extends React.Component {
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             }
-        });  
+            console.log(this.state.currentUser) 
+            let zipRef = firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL));
+            zipRef.push({ 
+                userID: this.state.currentUser.uid, 
+                debugging: "testing123"
+            }); 
+        });          
     }
-
-    componentWillUnmount() {
+    
+    componentWillUnmount() {        
         this.authUnsub();
     }
 
     render() {
-        console.log(this.state.currentUser)
-        // let zipRef = firebase.database().ref(this.state.currentUser.photoURL + "/"); 
-        // this.zipRef.push({
-        //     zip: this.state.currentUser.photoURL
-        // });  
-
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />

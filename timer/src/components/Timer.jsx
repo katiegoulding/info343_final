@@ -54,7 +54,9 @@ export default class Timer extends React.Component {
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             }
-        });  
+            console.log(this.state.currentUser) 
+            
+        }); 
     }
 
     componentWillUnmount() {
