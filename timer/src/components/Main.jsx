@@ -31,7 +31,7 @@ export default class Main extends React.Component {
             }); 
         });          
     }
-    
+
     componentWillUnmount() {        
         this.authUnsub();
     }
