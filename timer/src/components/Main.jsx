@@ -34,6 +34,12 @@ export default class Main extends React.Component {
     }
 
     render() {
+        console.log(this.state.currentUser)
+        // let zipRef = firebase.database().ref(this.state.currentUser.photoURL + "/"); 
+        // this.zipRef.push({
+        //     zip: this.state.currentUser.photoURL
+        // });  
+
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -53,7 +59,7 @@ export default class Main extends React.Component {
                     </Link>
 
                     <hr></hr>
-                    <Link to={constants.routes.myData}>
+                    <Link to={constants.routes.myData} currentuser={this.state.currentUser}>
                     <div id="myData">
                             <img src={profileIcon} alt="profile" />
                         <p> My Data </p>

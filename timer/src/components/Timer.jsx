@@ -1,9 +1,9 @@
 import React from "react";
-// import firebase from "firebase/app";
-// import 'firebase/auth';
-// import 'firebase/database';
-// import { Link } from "react-router-dom";
-// import constants from './constants'
+import firebase from "firebase/app";
+import 'firebase/auth';
+import 'firebase/database';
+import { Link } from "react-router-dom";
+import constants from './constants'
 import HeaderBar from './HeaderBar'
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
 
@@ -47,11 +47,18 @@ export default class Timer extends React.Component {
     }
 
     componentDidMount() {
-    
+        this.authUnsub = firebase.auth().onAuthStateChanged(user => {
+            this.setState({
+                currentUser: user, 
+            });            
+            if(this.state.currentUser === null) {
+                this.props.history.push(constants.routes.home);
+            }
+        });  
     }
 
     componentWillUnmount() {
-    
+        this.authUnsub();
     }
 
     render() {
