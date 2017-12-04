@@ -17,11 +17,29 @@ export default class Timer extends React.Component {
         super(props);
         this.state = { 
           secondsElapsed: 0, 
-          laps: [],
-          lastClearedIncrementer: null
+          lastClearedIncrementer: null,
+          waterSaverShowerHead: false,
+          regularShowerHead: true,
+          totalWaterUsed: 0
         };
         this.incrementer = null;
     }  
+
+    //Button toggle not really working!
+    yesLowFlow(evt) {
+        this.setState({
+            waterSaverShowerHead: true,
+            regularShowerHead: false
+        })
+    }
+
+    //Button toggle not really working!
+    yesRegular(evt) {
+        this.setState({
+            waterSaverShowerHead: false,
+            regularShowerHead: true
+        })
+    }
 
     handleStartClick() {
         this.incrementer = setInterval( () =>
@@ -44,6 +62,20 @@ export default class Timer extends React.Component {
         this.setState({
           lastClearedIncrementer: this.incrementer
         });
+
+        //get amount of time:
+        let waterMultiplier = 0;
+        console.log(this.state.secondsElapsed);
+        if(this.state.waterSaverShowerHead) {
+            waterMultiplier = .5;
+        } else {
+            waterMultiplier = 1;
+        }
+
+        //make sure time is converted to minutes:
+        this.setState({
+            totalWaterUsed: (this.state.secondsElapsed * waterMultiplier)
+        }); 
     }
 
     componentDidMount() {
@@ -72,9 +104,9 @@ export default class Timer extends React.Component {
                         <h1>Shower Timer</h1>
                         <h3>Set the water flow</h3>
 
-                        <div className="btn-group btn-group-lg" role="group" aria-label="Choose Showerhead">
-                            <button type="button" className="btn btn-secondary">Regular</button>
-                            <button type="button" className="btn btn-secondary">Low-Flow</button>
+                        <div className="btn-group btn-group-lg" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
+                            <button type="button" className="btn btn-secondary active" onClick={evt => this.yesRegular(evt)}>Regular</button>
+                            <button type="button" className="btn btn-secondary" onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
                         </div>
                     </div>
 
@@ -84,15 +116,21 @@ export default class Timer extends React.Component {
                         {(this.state.secondsElapsed === 0 ||
                             this.incrementer === this.state.lastClearedIncrementer
                             ? <button className="btn btn-dark" onClick={this.handleStartClick.bind(this)}>start</button>
-                            : <button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>stop</button>
+                            : <button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>pause</button> 
                         )}
                     
                         {(this.state.secondsElapsed !== 0 &&
                             this.incrementer === this.state.lastClearedIncrementer
-                            ? <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>reset</button>
+                            ? <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>clear</button>
                             : null
                         )}
-            
+                    </div>
+
+                    <div>
+                        {/* <h3>Results:</h3> 
+                            <p>You used x gallons</p>
+                            <p>You showered for x minutes</p>
+                        */}
                     </div>
                 </div>
             </div>

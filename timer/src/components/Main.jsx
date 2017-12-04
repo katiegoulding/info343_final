@@ -5,10 +5,7 @@ import 'firebase/database';
 import { Link } from "react-router-dom";
 import constants from './constants';
 import HeaderBar from './HeaderBar';
-import timerIcon from '../images/timerIcon.png';
-import profileIcon from '../images/profileIcon.png';
-import comparisonIcon from '../images/comparisonIcon.png';
-import settingsIcon from '../images/settingsIcon.png';
+import Chart from './Chart';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -40,51 +37,23 @@ export default class Main extends React.Component {
     }
 
     render() {
-        let channelRef = firebase.database().ref("messages/" + this.props.match.params.chanName);
-
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
                 <div className="container">
                     <div id="welcome">
-                        <h1>Welcome {this.state.currentUser.email}</h1>
-                        {/* Display name only shows after page reloads ? */}
-                        <h1> {this.state.currentUser.displayName} </h1> 
+                        <h1>Welcome {this.state.currentUser.displayName}</h1>
                     </div>
 
-                    <hr></hr>
-                    <Link to={constants.routes.timer} currentuser={this.state.currentUser}>
-                    <div id="showerTimer">
-                        <img src={timerIcon} alt="timer" />
-                        <p> Shower Timer </p>
-                    </div>
-                    </Link>
+                    <Link to={constants.routes.timer}><button className="btn btn-info">Take a shower</button></Link>
 
-                    <hr></hr>
-                    <Link to={constants.routes.myData} currentuser={this.state.currentUser}>
-                    <div id="myData">
-                            <img src={profileIcon} alt="profile" />
-                        <p> My Data </p>
-                    </div>
-                    </Link>
+                    <hr/>
+                    <h3>Your recent usage</h3>
+                    <Chart />
+                    <Chart />
 
-                    <hr></hr>
-                    <Link to={constants.routes.dataComp}>
-                    <div id="dataComp">
-                        <img src={comparisonIcon} alt="data comparison" />
-                        <p> Data Comparison </p>
-                    </div>
-                    </Link>
-
-                    <hr></hr>
-                    <Link to={constants.routes.settings}>
-                    <div id="settings">
-                        <img src={settingsIcon} alt="settings" />
-                        <p> Settings </p>
-                    </div>
-                    </Link>
-                    
-                    <hr></hr>
+                    <hr/>
+                    <h3>Your neighborhood's usage</h3>
                 </div>
             </div>
         );
