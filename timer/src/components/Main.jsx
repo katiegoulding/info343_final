@@ -34,6 +34,8 @@ export default class Main extends React.Component {
     }
 
     render() {
+        let channelRef = firebase.database().ref("messages/" + this.props.match.params.chanName);
+
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -45,7 +47,7 @@ export default class Main extends React.Component {
                     </div>
 
                     <hr></hr>
-                    <Link to={constants.routes.timer}>
+                    <Link to={constants.routes.timer} currentuser={this.state.currentUser}>
                     <div id="showerTimer">
                         <img src={timerIcon} alt="timer" />
                         <p> Shower Timer </p>
