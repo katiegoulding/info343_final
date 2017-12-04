@@ -20,28 +20,55 @@ export default class Timer extends React.Component {
           lastClearedIncrementer: null,
           waterSaverShowerHead: false,
           regularShowerHead: true,
-          totalWaterUsed: 0
+          totalWaterUsed: 0,
+          toggleLowFlow: "",
+          toggleRegular: "",
+          selectedLowFlow: "",
+          selectedRegular: ""
         };
         this.incrementer = null;
     }  
 
     //Button toggle not really working!
     yesLowFlow(evt) {
-        this.setState({
-            waterSaverShowerHead: true,
-            regularShowerHead: false
-        })
+        if(this.state.secondsElapsed === 0) {
+            this.setState({
+                waterSaverShowerHead: true,
+                regularShowerHead: false,
+                toggleLowFlow: " active",
+                toggleRegular: " disabled"
+            })
+        }
     }
 
     //Button toggle not really working!
     yesRegular(evt) {
-        this.setState({
-            waterSaverShowerHead: false,
-            regularShowerHead: true
-        })
+        if(this.state.secondsElapsed === 0) {
+            this.setState({
+                waterSaverShowerHead: false,
+                regularShowerHead: true,
+                toggleLowFlow: " disabled",
+                toggleRegular: " active"
+            })
+        }
     }
 
     handleStartClick() {
+        if(this.state.toggleLowFlow == " active") {
+            this.setState({
+                toggleLowFlow: " disabled",
+                toggleRegular: " disabled",
+                selectedLowFlow: " btn-info",
+                selectedRegular: ""
+            })
+        } else {
+            this.setState({
+                toggleLowFlow: " disabled",
+                toggleRegular: " disabled",
+                selectedLowFlow: "",
+                selectedRegular: " btn-info"
+            })
+        }
         this.incrementer = setInterval( () =>
           this.setState({
             secondsElapsed: this.state.secondsElapsed + 1
@@ -50,6 +77,12 @@ export default class Timer extends React.Component {
     }
 
     handleResetClick() {
+        this.setState({
+            toggleLowFlow: "",
+            toggleRegular: "",
+            selectedLowFlow: "",
+            selectedRegular: ""
+        })
         clearInterval(this.incrementer);
         this.setState({
           secondsElapsed: 0,
@@ -105,8 +138,8 @@ export default class Timer extends React.Component {
                         <h3>Set the water flow</h3>
 
                         <div className="btn-group btn-group-lg" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
-                            <button type="button" className="btn btn-secondary active" onClick={evt => this.yesRegular(evt)}>Regular</button>
-                            <button type="button" className="btn btn-secondary" onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
+                            <button type="button" className={"btn btn-secondary" + this.state.toggleRegular + this.state.selectedRegular} onClick={evt => this.yesRegular(evt)}>Regular</button>
+                            <button type="button" className={"btn btn-secondary" + this.state.toggleLowFlow + this.state.selectedLowFlow} onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
                         </div>
                     </div>
 
