@@ -126,7 +126,8 @@ export default class Timer extends React.Component {
         let dateStamp = month + "" + date + "" + hours + "" + mins;     
         // console.log(dateStamp);
         // console.log(this.state.currentUser.photoURL);
-        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage/" + dateStamp + "/").set({ 
+        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage/" + dateStamp + "/")
+        .set({ 
                 showerLength: this.state.secondsElapsed,
                 totalWaterUsed: Number(Math.round((this.state.secondsElapsed * waterMultiplier) * 100) / 100),     
         }); 
