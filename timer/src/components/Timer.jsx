@@ -2,7 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import constants from './constants'
 import HeaderBar from './HeaderBar'
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
@@ -30,7 +30,7 @@ export default class Timer extends React.Component {
         this.state = { 
           secondsElapsed: 0, 
           lastClearedIncrementer: null,
-          waterSaverShowerHead: false,
+          lowFlowShowerHead: false,
           regularShowerHead: true,
           totalWaterUsed: 0,
           currentUser: null,
@@ -39,7 +39,8 @@ export default class Timer extends React.Component {
           toggleLowFlow: "",
           toggleRegular: "",
           selectedLowFlow: "",
-          selectedRegular: ""
+          selectedRegular: "",
+          date: firebase.database.ServerValue.TIMESTAMP,                      
         };
         this.incrementer = null;
     }  
@@ -48,7 +49,7 @@ export default class Timer extends React.Component {
     yesLowFlow(evt) {
         if(this.state.secondsElapsed === 0) {
             this.setState({
-                waterSaverShowerHead: true,
+                lowFlowShowerHead: true,
                 regularShowerHead: false,
                 toggleLowFlow: " active",
                 toggleRegular: " disabled"
@@ -60,7 +61,7 @@ export default class Timer extends React.Component {
     yesRegular(evt) {
         if(this.state.secondsElapsed === 0) {
             this.setState({
-                waterSaverShowerHead: false,
+                lowFlowShowerHead: false,
                 regularShowerHead: true,
                 toggleLowFlow: " disabled",
                 toggleRegular: " active"
@@ -69,14 +70,14 @@ export default class Timer extends React.Component {
     }
 
     handleStartClick() {
-        if(this.state.toggleLowFlow === " active") {
+        if (this.state.toggleLowFlow === " active") {
             this.setState({
                 toggleLowFlow: " disabled",
                 toggleRegular: " disabled",
                 selectedLowFlow: " btn-info",
                 selectedRegular: ""
             })
-        } else if (this.state.toggleRegular === " active"){
+        } else if (this.state.toggleRegular === " active") {
             this.setState({
                 toggleLowFlow: " disabled",
                 toggleRegular: " disabled",
@@ -103,23 +104,32 @@ export default class Timer extends React.Component {
         })
 
         let waterMultiplier;
-        if(this.state.waterSaverShowerHead) {
+        if(this.state.lowFlowShowerHead) {
             waterMultiplier = (1.0 / 30.0);
         } else {
             waterMultiplier = (2.5 / 60.0);
         }
 
         this.setState({
-            //might be too few decimals
-            totalWaterUsed: Math.round(((this.state.secondsElapsed * waterMultiplier) * 100) / 100)
+            totalWaterUsed: Number(Math.round((this.state.secondsElapsed * waterMultiplier) * 100) / 100)
         }); 
         
-        //Push to Firebase here?
-
         clearInterval(this.incrementer);
         this.setState({
             secondsElapsed: 0,
         });
+
+        let month = new Date().getMonth();
+        let date = new Date().getDate();       
+        let hours = new Date().getHours();        
+        let mins = new Date().getMinutes(); 
+        let dateStamp = month + "" + date + "" + hours + "" + mins;     
+        // console.log(dateStamp);
+        // console.log(this.state.currentUser.photoURL);
+        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage/" + dateStamp + "/").set({ 
+                showerLength: this.state.secondsElapsed,
+                totalWaterUsed: Number(Math.round((this.state.secondsElapsed * waterMultiplier) * 100) / 100),     
+        }); 
     }
 
     handleStopClick() {
@@ -152,21 +162,21 @@ export default class Timer extends React.Component {
                     <div>
                         <h1>Shower Timer</h1>
                         <h3>Set the water flow</h3>
-
                         <div className="btn-group btn-group-lg" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
-                            <button type="button" className={"btn btn-secondary" + this.state.toggleRegular + this.state.selectedRegular} onClick={evt => this.yesRegular(evt)}>Regular</button>
+                            <button type="button" className={"btn btn-secondary" + this.state.toggleRegular + this.state.selectedRegular} onClick={evt => this.yesRegular(evt)}>Standard</button>
                             <button type="button" className={"btn btn-secondary" + this.state.toggleLowFlow + this.state.selectedLowFlow} onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
                         </div>
                     </div>
 
                     <div className="stopwatch">
                         <h1 className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
-                
-                        {(this.state.secondsElapsed === 0 ||
+                        {( !(this.state.toggleLowFlow && this.state.toggleRegular) ? null :
+                        (this.state.secondsElapsed === 0 ||
                             this.incrementer === this.state.lastClearedIncrementer
                             ? <button className="btn btn-dark" onClick={this.handleStartClick.bind(this)}>Start</button>
                             : <div><button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>Pause</button>
                              <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>I'm Done Showering!</button></div>
+                        )
                         )}
                     
                         {(this.state.secondsElapsed !== 0 &&
@@ -180,14 +190,14 @@ export default class Timer extends React.Component {
                         {( this.state.reset === true  ?
                             <div>
                                 <h3>Results:</h3> 
-                                {/* correct gallons report */}
-                                <p>You used approximately { this.state.totalWaterUsed } gallons of water</p>
+                                <p>You used approximately { this.state.totalWaterUsed } gallons of water using a {( this.state.lowFlowShowerHead ? "low " : "standard " )}flow shower head </p>
                                 {( this.state.secondsShowered < 60 ? 
                                     <p>You showered for {this.state.secondsShowered} seconds. </p>
                                   : <p>You showered for {formattedResults(this.state.secondsShowered)} seconds</p> )}
                             </div>
                             : null)}    
                     </div>
+                    <Link to={constants.routes.main}><button className="btn btn-info">Back to My Data</button></Link>
                 </div>
             </div>
         );
