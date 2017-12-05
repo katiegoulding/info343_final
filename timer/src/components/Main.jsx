@@ -12,24 +12,35 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             currentUser: "",
-            messagesSnapshot: undefined,
+            userData: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                datasets:[
+                  {
+                    label:'Gallons',
+                    data:[
+                      24,
+                      48,
+                      10,
+                      12,
+                      10,
+                      30
+                    ],
+                    backgroundColor:[
+                        'rgba(54, 162, 235, 0.6)'
+                    ]
+                  }
+                ]
+            }
         }
     }
+    // this.setState({userData: snapshot.val()});
+    // this.state.userData.forEach(shower => {
+    //     console.log("shower session :D");
+    //     console.log(shower);
 
     componentWillMount() {
-        let mainRef = firebase.database().ref("zipcode/");
-        mainRef.on('value', function(snapshot) {
-            snapshot.forEach(user => {
-                let childData = user.val();
-                console.log(childData);                               
-            })
-        })
-        //console.log(mainRef.child('/' + ))
-        // firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid)).on("value",
-        //     snapshot => this.setState({messagesSnapshot: snapshot})
-        // );
     }
-
+    
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({
@@ -37,21 +48,17 @@ export default class Main extends React.Component {
             });
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
-            }
-            let zipRef = firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL));
-            // zipRef.push({ 
-            //     userID: this.state.currentUser.uid, 
-            //     debugging: "stillWorking?"
-            // }); 
-        });          
+            } 
+        });  
     }
 
-    componentWillUnmount() {       
-        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid)).off("value");        
-        this.authUnsub();
+    componentWillUnmount() {     
     }
 
     render() {
+        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
+            console.log(snapshot.val());
+        })  
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
