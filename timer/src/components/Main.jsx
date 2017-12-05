@@ -12,6 +12,7 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             currentUser: "",
+            reffy: "",
             userData: {
                 labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
                 datasets:[
@@ -30,15 +31,13 @@ export default class Main extends React.Component {
                     ]
                   }
                 ]
-            }
+            },
+            snapshot: undefined
         }
     }
-    // this.setState({userData: snapshot.val()});
-    // this.state.userData.forEach(shower => {
-    //     console.log("shower session :D");
-    //     console.log(shower);
 
     componentWillMount() {
+
     }
     
     componentDidMount() {
@@ -48,17 +47,13 @@ export default class Main extends React.Component {
             });
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
-            } 
-        });  
-    }
+            }
+        });                        
 
-    componentWillUnmount() {     
     }
 
     render() {
-        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
-            console.log(snapshot.val());
-        })  
+
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
