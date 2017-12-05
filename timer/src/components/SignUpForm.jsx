@@ -5,6 +5,8 @@ import constants from "./constants";
 import HeaderBar from './HeaderBar';
 import "firebase/auth";
 import "firebase/database";
+import "./style.css";
+import HeaderBar2 from './HeaderBar2';
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -51,73 +53,70 @@ export default class SignUp extends React.Component {
     render() {
         return(
             <div>
-                <HeaderBar />
-                <div className="container">
-                    <h1>Sign Up</h1>
+                <HeaderBar2 />
+                <div className="container text-center" id="SignInForm">
+                    <p id="signInHeader"><span>Sign up</span></p>
                     <form onSubmit={evt => this.handleSignUp(evt)}>
-                        <div className="form-group">
-                            <label htmlFor="email">Email: </label>
+                        <div id="inputSignin1" className="form-group">
                             <input 
                                 id="email"
                                 type="email"
                                 className="form-control"
-                                placeholder="enter your email address"
+                                placeholder="Email address"
                                 value={this.state.email}
                                 onInput={(evt) => this.setState({email: evt.target.value})}
                             />                        
                         </div>                    
-                        <div className="form-group">
-                            <label htmlFor="password">Password (minimum of 6 characters): </label>
+                        <div id="inputSignin2" className="form-group">
                             <input 
                                 id="password"
                                 type="password"
                                 className="form-control"
-                                placeholder="enter your password"
+                                placeholder="Password"
                                 value={this.state.password}
                                 onInput={(evt) => this.setState({password: evt.target.value})}
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="passwordConfirm">Please re-enter your password: </label>
+                        <div id="inputSignin2" className="form-group">
                             <input 
                                 id="passwordConfirm"
                                 type="password"
                                 className="form-control"
-                                placeholder="confirm your password"
+                                placeholder="Confirm password"
                                 value={this.state.passwordConfirm}
                                 onInput={(evt) => this.setState({passwordConfirm: evt.target.value})}
                             />                        
                         </div>
-                        <hr></hr>
-                        <div className="form-group">
-                            <label htmlFor="displayName">Display Name: </label>
+                        <div id="inputSignin2" className="form-group">
                             <input 
                                 id="displayName" 
                                 type="text" 
                                 className="form-control" 
-                                placeholder="enter the name you would like displayed" 
+                                placeholder="What should we call you?" 
                                 value={this.state.displayName}
                                 onInput={evt => this.setState({displayName: evt.target.value})}
                             />
                         </div> 
                         <div className="form-group">
-                            <label htmlFor="zipcode">Zipcode: </label>
                             <input 
                                 id="zipcode" 
                                 type="text" 
                                 className="form-control" 
-                                placeholder="Enter your zipcode" 
+                                placeholder="Zipcode" 
                                 value={this.state.zipcode}
                                 onInput={evt => this.setState({zipcode: evt.target.value})}
                             />
                         </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-default">
-                                Sign Up
+                        <div id="agreePolicyDiv2">
+                            <p id="agreePolicy">If you click "Sign up", you agree to Splish's Terms & Conditions and Privacy Policy.</p>
+                        </div>
+                        <div id="inputSignin3"className="form-group">
+                            <button id="signupBtn" type="submit" className="btn btn-default">
+                                Sign up
                             </button>
                         </div>
                     </form>
-                    <p> Already have an account? <Link to={constants.routes.signin}> Sign in! </Link> </p>
+                    <p id="linktoSignup"> Already have an account? <Link to={constants.routes.signin} id="signinLink"> Sign in! </Link> </p>
                 </div>
             </div>
         );
