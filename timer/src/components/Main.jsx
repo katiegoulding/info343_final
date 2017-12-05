@@ -14,18 +14,11 @@ export default class Main extends React.Component {
             currentUser: "",
             reffy: "",
             userData: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                labels: [],
                 datasets:[
                   {
                     label:'Gallons',
-                    data:[
-                      24,
-                      48,
-                      10,
-                      12,
-                      10,
-                      30
-                    ],
+                    data:[],
                     backgroundColor:[
                         'rgba(54, 162, 235, 0.6)'
                     ]
@@ -47,13 +40,25 @@ export default class Main extends React.Component {
             });
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
-            }
-        });                        
+            } 
+        }); 
+    }
 
     }
 
     render() {
-
+        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
+            let data = [];
+            console.log(snapshot.val());
+            let showers = snapshot.val();
+            if(showers !== null) {
+                console.log(showers);                
+                Object.keys(showers).forEach(key => {
+                    data.push(showers[key].totalWaterUsed);
+                })
+            } 
+            console.log(data);
+        })  
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
