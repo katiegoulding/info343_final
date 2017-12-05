@@ -31,16 +31,25 @@ export default class SignUp extends React.Component {
     }
 
     handleSignUp(evt) {
+        console.log(this.state.validZips)
+        console.log(this.state.zipcode)
+        console.log("inKingCo: " + this.state.validZips.indexOf(Number(this.state.zipcode)))
         evt.preventDefault();
-        console.log(this.state.zipcode);
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        if(this.state.password !== this.state.passwordConfirm) {
+            this.setState({errorMessage: "Please make sure your passwords match"}) 
+        } else if (!this.state.displayName) { 
+            this.setState({errorMessage: "Please enter a display name" })
+        } else if (this.state.validZips.indexOf(Number(this.state.zipcode)) < 0) {
+            this.setState({errorMessage: "Please enter a zip code in King County"})
+        } else {
+             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => user.updateProfile({
                 displayName: this.state.displayName,
                 photoURL: this.state.zipcode,
             }))
             .catch(err => this.setState({errorMessage: err.message})
         );
-
+        }
         firebase.auth().onAuthStateChanged(user => {
             if(this.state.currentUser) {
                 window.location.href = constants.routes.main;
@@ -52,6 +61,11 @@ export default class SignUp extends React.Component {
         return(
             <div>
                 <HeaderBar />
+                {
+                    this.state.errorMessage ?
+                    <div className="alert alert-danger">{this.state.errorMessage}</div> :
+                    undefined
+                } 
                 <div className="container">
                     <h1>Sign Up</h1>
                     <form onSubmit={evt => this.handleSignUp(evt)}>
