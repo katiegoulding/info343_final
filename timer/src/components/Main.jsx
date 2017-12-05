@@ -12,53 +12,55 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             currentUser: "",
-            reffy: "",
             userData: {
                 labels: [],
                 datasets:[
                   {
                     label:'Gallons',
-                    data:[],
+                    waterData:[],
                     backgroundColor:[
                         'rgba(54, 162, 235, 0.6)'
                     ]
                   }
                 ]
             },
-            snapshot: undefined
         }
     }
 
     componentWillMount() {
-
     }
     
     componentDidMount() {
-        this.authUnsub = firebase.auth().onAuthStateChanged(user => {
+        this.authUnsub = firebase.auth().onAuthStateChanged(user => {         
             this.setState({
-                currentUser: user, 
+                currentUser: user,
             });
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             } 
-        }); 
+
+            firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
+                let data = [];
+                let showers = snapshot.val();
+                if(showers !== null) {
+                    Object.keys(showers).forEach(key => {
+                        data.push(showers[key].totalWaterUsed);
+                    })
+                } 
+                console.log(this.state.userData.datasets[0].waterData)
+                console.log(data);
+                let tempUserData = this.state.userData;
+                tempUserData.datasets[0].waterData = data;
+                this.setState({tempUserData: data});   
+            }) 
+        });        
     }
 
+    componentWillUnmount() {     
     }
 
-    render() {
-        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
-            let data = [];
-            console.log(snapshot.val());
-            let showers = snapshot.val();
-            if(showers !== null) {
-                console.log(showers);                
-                Object.keys(showers).forEach(key => {
-                    data.push(showers[key].totalWaterUsed);
-                })
-            } 
-            console.log(data);
-        })  
+    render() { 
+        console.log(this.state.userData.datasets[0].label);
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -71,7 +73,11 @@ export default class Main extends React.Component {
 
                     <hr/>
                     <h3>Your recent usage</h3>
-                    <Chart />
+                    {console.log(this.state.userData.datasets[0].waterData)}
+                    {console.log(this.state.tempUserData)}
+                    <p>In Main.jsx {(this.state.userData.datasets[0].waterData) }</p>
+                   
+                    <Chart totalGallons={this.state.tempUserData}/>
                     <Chart />
 
                     <hr/>
