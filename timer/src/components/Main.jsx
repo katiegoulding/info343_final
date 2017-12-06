@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import HeaderBar from './HeaderBar';
 import Chart from './Chart';
+import BarChart from './BarChart';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -23,6 +24,18 @@ export default class Main extends React.Component {
                   }
                 ]
             }, 
+            timerData: {
+                labels: [],
+                datasets:[
+                  {
+                    label:'Time (seconds)',
+                    data:[],
+                    backgroundColor:[
+                        'rgba(54, 162, 235, 0.6)'
+                    ]
+                  }
+                ]
+            },
             currentUser: ""
         }
     }
@@ -38,11 +51,13 @@ export default class Main extends React.Component {
 
             firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
                 let totalWaterUsed = [];
+                let totalTime = [];
                 let dateTime = [];
                 let showers = snapshot.val();
                 if(showers !== null) {
                     Object.keys(showers).forEach(key => {
                         totalWaterUsed.push(showers[key].totalWaterUsed);
+                        totalTime.push(showers[key].showerLength);
                         let formattedDate = key[0] + key[1] + "-" + key[2] + key[3] + " " + key[4] + key[5] + ":" + key[6] + key[7];
                         dateTime.push(formattedDate);
                     })
@@ -54,6 +69,15 @@ export default class Main extends React.Component {
                 let tempchartLabel = this.state.chartData;
                 tempchartData.labels = dateTime;
                 this.setState({tempchartLabel: dateTime}); 
+
+                let tempTimerChartLabel = this.state.timerData;
+                tempTimerChartLabel.labels = dateTime;
+                this.setState({tempTimerChartLabel: dateTime}); 
+
+                let tempTimerChart = this.state.timerData;
+                tempTimerChart.datasets[0].data = totalTime;
+                this.setState({tempTimerChart: totalTime});
+                console.log(this.state.timerData)
             }) 
         });        
     }
@@ -73,6 +97,7 @@ export default class Main extends React.Component {
                     <h3>Your recent usage</h3>
                                   
                     <Chart chartData={this.state.chartData}/>
+                    <BarChart chartData={this.state.timerData}/>
                     
                     <hr/>
                     <h3>Your neighborhood's usage</h3>
