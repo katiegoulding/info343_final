@@ -46,7 +46,7 @@ export default class Timer extends React.Component {
     }  
 
     yesLowFlow(evt) {
-        evt.preventDefault();        
+        //evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: true,
@@ -58,7 +58,7 @@ export default class Timer extends React.Component {
     }
 
     yesRegular(evt) {
-        evt.preventDefault();        
+        //evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: false,
@@ -70,7 +70,7 @@ export default class Timer extends React.Component {
     }
 
     handleStartClick() {
-        evt.preventDefault();        
+        //preventDefault();        
         if (this.state.toggleLowFlow === " active") {
             this.setState({
                 toggleLowFlow: " disabled",
@@ -95,7 +95,7 @@ export default class Timer extends React.Component {
     }
 
     handleResetClick() {
-        evt.preventDefault();        
+        //preventDefault();        
         this.setState({
             toggleLowFlow: "",
             toggleRegular: "",
@@ -146,7 +146,7 @@ export default class Timer extends React.Component {
     }
 
     handleStopClick() {
-        evt.preventDefault();        
+        //preventDefault();        
         clearInterval(this.incrementer);
         this.setState({
           lastClearedIncrementer: this.incrementer
