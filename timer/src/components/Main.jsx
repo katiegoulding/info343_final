@@ -24,7 +24,7 @@ export default class Main extends React.Component {
                   }
                 ]
             },
-            snapshot: undefined
+            userData: undefined
         }
     }
 
@@ -39,6 +39,18 @@ export default class Main extends React.Component {
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             } 
+            firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
+                var data = [];
+                console.log(snapshot.val());
+                let showers = snapshot.val();
+                if(showers !== null) {
+                    console.log(showers);                
+                    Object.keys(showers).forEach(key => {
+                        data.push(showers[key].totalWaterUsed);
+                    })
+                } 
+                this.setState({userData: data});
+            })  
         }); 
     }
 
@@ -46,18 +58,6 @@ export default class Main extends React.Component {
     }
 
     render() {
-        firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
-            let data = [];
-            console.log(snapshot.val());
-            let showers = snapshot.val();
-            if(showers !== null) {
-                console.log(showers);                
-                Object.keys(showers).forEach(key => {
-                    data.push(showers[key].totalWaterUsed);
-                })
-            } 
-            console.log(data);
-        })  
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -70,6 +70,7 @@ export default class Main extends React.Component {
 
                     <hr/>
                     <h3>Your recent usage</h3>
+                    {console.log(this.state.userData)}
                     <Chart />
                     <Chart />
 
