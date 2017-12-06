@@ -176,6 +176,7 @@ export default class Timer extends React.Component {
                 <div id="timer" className="card border-light">
                     <div id="cardTop">
                             <h1 id="timeElapsed"className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
+                            <p>What kind of showerhead do you have?</p>
                             <div className="btn-group" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
                                 <button id={"switch-left" + this.state.toggleLowFlow} type="button" onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
                                 <button id={"switch-right" + this.state.toggleRegular} type="button" onClick={evt => this.yesRegular(evt)}>Regular</button>
@@ -183,11 +184,13 @@ export default class Timer extends React.Component {
                     </div>
                     <div id="timerBtn" className="card-body">
                         <div className="d-flex justify-content-around">
-                            {(this.state.secondsElapsed === 0 ||
+                            {( (this.state.toggleLowFlow === "" && this.state.toggleRegular === "") ? null :
+                            (this.state.secondsElapsed === 0 ||
                                 this.incrementer === this.state.lastClearedIncrementer
                                 ? <button id="startBtn" onClick={this.handleStartClick.bind(this)}>START</button>
                                 : <div className="w-100 d-flex justify-content-around"><button id="pauseBtn" onClick={this.handleStopClick.bind(this)}>PAUSE</button>
                                 <button id="doneBtn" onClick={this.handleResetClick.bind(this)}>DONE</button></div>
+                            )
                             )}
 
                             {(this.state.secondsElapsed !== 0 &&
@@ -197,12 +200,11 @@ export default class Timer extends React.Component {
                             )}
                         </div>
                     </div>
-                    <Link to={constants.routes.main}><button className="btn btn-info">Back to My Data</button></Link>
                 </div>
                 <br></br>
                 <div id="result">
                     {( this.state.reset === true  ?
-                        <div class="alert alert-primary" role="alert">
+                        <div className="alert alert-primary" role="alert">
                             <p id="resultHeader"><span>Result</span></p> 
                             {/* correct gallons report */}
                             <p>You used approximately { this.state.totalWaterUsed } gallons of water</p>
