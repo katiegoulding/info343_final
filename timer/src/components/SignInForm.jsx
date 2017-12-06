@@ -28,7 +28,8 @@ export default class SignInForm extends React.Component {
     }
 
     handleSignIn(evt) {
-        evt.preventDefault();        
+        evt.preventDefault();  
+        this.setState({errorMessage: undefined});      
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .catch(err => this.setState({errorMessage: err.message}));        
         
@@ -42,6 +43,11 @@ export default class SignInForm extends React.Component {
         return(
             <div>
                 <HeaderBar />
+                {
+                    this.state.errorMessage ?
+                    <div className="alert alert-danger">{this.state.errorMessage}</div> :
+                    undefined
+                } 
                 <div className="container">
                     <h1>Sign In</h1>
 

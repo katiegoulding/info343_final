@@ -19,12 +19,13 @@ export default class SignUp extends React.Component {
             validZips: [98126, 98133, 98136, 98134, 98144, 98146, 98148, 98155, 98154, 98164, 98166, 98168, 98177, 98178, 98190, 98188, 98198, 98195, 98199, 98224, 98251, 98288, 98354, 98001, 98003, 98002, 98005, 98004, 98007, 98006, 98009, 98008, 98011, 98010, 98014, 98019, 98022, 98024, 98023, 98025, 98028, 98027, 98030, 98029, 98032, 98031, 98034, 98033, 98038, 98040, 98039, 98042, 98045, 98047, 98051, 98050, 98053, 98052, 98055, 98057, 98056, 98059, 98058, 98064, 98068, 98065, 98070, 98072, 98075, 98074, 98077, 98083, 98092, 98101, 98103, 98102, 98105, 98104, 98107, 98106, 98109, 98108, 98112, 98115, 98114, 98117, 98116, 98119, 98118, 98122, 98121, 98125]
         }
     }
-    //to check if something is contained in an array (myarr.indexOf("turtles") > -1)
-    
+
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({currentUser: user});
+            console.log("current user in sign up: " + user);
         });
+        
     }
 
     componentWillUnmount() {     
@@ -33,15 +34,21 @@ export default class SignUp extends React.Component {
 
     handleSignUp(evt) {
         evt.preventDefault();
-        console.log(this.state.zipcode);
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        if(this.state.password !== this.state.passwordConfirm) {
+            this.setState({errorMessage: "Please make sure your passwords match"}) 
+        } else if (!this.state.displayName) { 
+            this.setState({errorMessage: "Please enter a display name" })
+        } else if (this.state.validZips.indexOf(Number(this.state.zipcode)) < 0) {
+            this.setState({errorMessage: "Please enter a zip code in King County"})
+        } else {
+             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => user.updateProfile({
                 displayName: this.state.displayName,
                 photoURL: this.state.zipcode,
             }))
             .catch(err => this.setState({errorMessage: err.message})
         );
-
+        }
         firebase.auth().onAuthStateChanged(user => {
             if(this.state.currentUser) {
                 window.location.href = constants.routes.main;
@@ -53,6 +60,11 @@ export default class SignUp extends React.Component {
         return(
             <div>
                 <HeaderBar />
+                {
+                    this.state.errorMessage ?
+                    <div className="alert alert-danger">{this.state.errorMessage}</div> :
+                    undefined
+                } 
                 <div className="container">
                     <h1>Sign Up</h1>
                     <form onSubmit={evt => this.handleSignUp(evt)}>

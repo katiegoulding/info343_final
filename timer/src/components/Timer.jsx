@@ -45,8 +45,8 @@ export default class Timer extends React.Component {
         this.incrementer = null;
     }  
 
-    //Button toggle not really working!
     yesLowFlow(evt) {
+        //evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: true,
@@ -57,8 +57,8 @@ export default class Timer extends React.Component {
         }
     }
 
-    //Button toggle not really working!
     yesRegular(evt) {
+        //evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: false,
@@ -70,6 +70,7 @@ export default class Timer extends React.Component {
     }
 
     handleStartClick() {
+        //preventDefault();        
         if (this.state.toggleLowFlow === " active") {
             this.setState({
                 toggleLowFlow: " disabled",
@@ -94,6 +95,7 @@ export default class Timer extends React.Component {
     }
 
     handleResetClick() {
+        //preventDefault();        
         this.setState({
             toggleLowFlow: "",
             toggleRegular: "",
@@ -119,21 +121,32 @@ export default class Timer extends React.Component {
             secondsElapsed: 0,
         });
 
-        let month = new Date().getMonth();
+        let month = new Date().getMonth() + 1;
         let date = new Date().getDate();       
         let hours = new Date().getHours();        
-        let mins = new Date().getMinutes(); 
+        let mins = new Date().getMinutes();
+        if(mins < 10) {
+            mins = "0" + mins
+        } 
+        if(hours < 10) {
+            hours = "0" + hours
+        }
+        if(date < 10) {
+            date = "0" + date
+        }
+        if(month < 10) {
+            month = "0" + month
+        }
         let dateStamp = month + "" + date + "" + hours + "" + mins;     
-        // console.log(dateStamp);
-        // console.log(this.state.currentUser.photoURL);
         firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage/" + dateStamp + "/")
         .set({ 
-                showerLength: this.state.secondsElapsed,
-                totalWaterUsed: Number(Math.round((this.state.secondsElapsed * waterMultiplier) * 100) / 100),     
+            showerLength: this.state.secondsElapsed,
+            totalWaterUsed: Number(Math.round((this.state.secondsElapsed * waterMultiplier) * 100) / 100),     
         }); 
     }
 
     handleStopClick() {
+        //preventDefault();        
         clearInterval(this.incrementer);
         this.setState({
           lastClearedIncrementer: this.incrementer
