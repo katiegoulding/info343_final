@@ -2,9 +2,9 @@ import React from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
+import constants from './constants';
+import HeaderBar3 from './HeaderBar3';
 import { Link } from "react-router-dom";
-import constants from './constants'
-import HeaderBar from './HeaderBar'
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
 
 // TO DO:
@@ -40,7 +40,7 @@ export default class Timer extends React.Component {
           toggleRegular: "",
           selectedLowFlow: "",
           selectedRegular: "",
-          date: firebase.database.ServerValue.TIMESTAMP,                      
+          pause: false
         };
         this.incrementer = null;
     }  
@@ -51,8 +51,8 @@ export default class Timer extends React.Component {
             this.setState({
                 lowFlowShowerHead: true,
                 regularShowerHead: false,
-                toggleLowFlow: " active",
-                toggleRegular: " disabled"
+                toggleLowFlow: "lowFlow",
+                toggleRegular: ""
             })
         }
     }
@@ -63,8 +63,8 @@ export default class Timer extends React.Component {
             this.setState({
                 lowFlowShowerHead: false,
                 regularShowerHead: true,
-                toggleLowFlow: " disabled",
-                toggleRegular: " active"
+                toggleLowFlow: "",
+                toggleRegular: "regularFlow"
             })
         }
     }
@@ -149,7 +149,8 @@ export default class Timer extends React.Component {
         //preventDefault();        
         clearInterval(this.incrementer);
         this.setState({
-          lastClearedIncrementer: this.incrementer
+          lastClearedIncrementer: this.incrementer,
+          pause: true
         });        
     }
 
@@ -171,48 +172,47 @@ export default class Timer extends React.Component {
     render() {
         return (
             <div>
-                <HeaderBar currentUser={this.state.currentUser}/>
-                <div className="container">
-                    <div>
-                        <h1>Shower Timer</h1>
-                        <h3>Set the water flow</h3>
-                        <div className="btn-group btn-group-lg" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
-                            <button type="button" className={"btn btn-secondary" + this.state.toggleRegular + this.state.selectedRegular} onClick={evt => this.yesRegular(evt)}>Standard</button>
-                            <button type="button" className={"btn btn-secondary" + this.state.toggleLowFlow + this.state.selectedLowFlow} onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
-                        </div>
-                    </div>
-
-                    <div className="stopwatch">
-                        <h1 className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
-                        {( !(this.state.toggleLowFlow && this.state.toggleRegular) ? null :
-                        (this.state.secondsElapsed === 0 ||
-                            this.incrementer === this.state.lastClearedIncrementer
-                            ? <button className="btn btn-dark" onClick={this.handleStartClick.bind(this)}>Start</button>
-                            : <div><button className="btn btn-danger" onClick={this.handleStopClick.bind(this)}>Pause</button>
-                             <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>I'm Done Showering!</button></div>
-                        )
-                        )}
-                    
-                        {(this.state.secondsElapsed !== 0 &&
-                            this.incrementer === this.state.lastClearedIncrementer
-                            ? <button className="btn btn-warning" onClick={this.handleResetClick.bind(this)}>I'm Done Showering!</button>
-                            : null
-                        )}
-                    </div>
-
-                    <div>
-                        {( this.state.reset === true  ?
-                            <div>
-                                <h3>Results:</h3> 
-                                <p>You used approximately { this.state.totalWaterUsed } gallons of water using a {( this.state.lowFlowShowerHead ? "low " : "standard " )}flow shower head </p>
-                                {( this.state.secondsShowered < 60 ? 
-                                    <p>You showered for {this.state.secondsShowered} seconds. </p>
-                                  : <p>You showered for {formattedResults(this.state.secondsShowered)} seconds</p> )}
+                <HeaderBar3 currentUser={this.state.currentUser}/>
+                <div id="timer" className="card border-light">
+                    <div id="cardTop">
+                            <h1 id="timeElapsed"className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
+                            <div className="btn-group" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
+                                <button id={"switch-left" + this.state.toggleLowFlow} type="button" onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
+                                <button id={"switch-right" + this.state.toggleRegular} type="button" onClick={evt => this.yesRegular(evt)}>Regular</button>
                             </div>
-                            : null)}    
+                    </div>
+                    <div id="timerBtn" className="card-body">
+                        <div className="d-flex justify-content-around">
+                            {(this.state.secondsElapsed === 0 ||
+                                this.incrementer === this.state.lastClearedIncrementer
+                                ? <button id="startBtn" onClick={this.handleStartClick.bind(this)}>START</button>
+                                : <div className="w-100 d-flex justify-content-around"><button id="pauseBtn" onClick={this.handleStopClick.bind(this)}>PAUSE</button>
+                                <button id="doneBtn" onClick={this.handleResetClick.bind(this)}>DONE</button></div>
+                            )}
+
+                            {(this.state.secondsElapsed !== 0 &&
+                                    this.incrementer === this.state.lastClearedIncrementer
+                                    ? <button id="doneBtn" onClick={this.handleResetClick.bind(this)}>DONE</button>
+                                    : null
+                            )}
+                        </div>
                     </div>
                     <Link to={constants.routes.main}><button className="btn btn-info">Back to My Data</button></Link>
                 </div>
+                <br></br>
+                <div id="result">
+                    {( this.state.reset === true  ?
+                        <div class="alert alert-primary" role="alert">
+                            <p id="resultHeader"><span>Result</span></p> 
+                            {/* correct gallons report */}
+                            <p>You used approximately { this.state.totalWaterUsed } gallons of water</p>
+                            {( this.state.secondsShowered < 60 ? 
+                                <p>You showered for {this.state.secondsShowered} seconds. </p>
+                                : <p>You showered for {formattedResults(this.state.secondsShowered)} seconds</p> )}
+                        </div>
+                    : null)} 
+                </div>
+
             </div>
         );
     }
