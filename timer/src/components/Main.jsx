@@ -11,25 +11,22 @@ export default class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: "",
-            userData: {
+            chartData: {
                 labels: [],
                 datasets:[
                   {
                     label:'Gallons',
-                    waterData:[],
+                    data:[],
                     backgroundColor:[
                         'rgba(54, 162, 235, 0.6)'
                     ]
                   }
                 ]
-            },
+            }, 
+            currentUser: ""
         }
     }
 
-    componentWillMount() {
-    }
-    
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {         
             this.setState({
@@ -40,27 +37,28 @@ export default class Main extends React.Component {
             } 
 
             firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
-                let data = [];
+                let totalWaterUsed = [];
+                let dateTime = [];
                 let showers = snapshot.val();
                 if(showers !== null) {
                     Object.keys(showers).forEach(key => {
-                        data.push(showers[key].totalWaterUsed);
+                        totalWaterUsed.push(showers[key].totalWaterUsed);
+                        let formattedDate = key[0] + key[1] + "-" + key[2] + key[3] + " " + key[4] + key[5] + ":" + key[6] + key[7];
+                        dateTime.push(formattedDate);
                     })
                 } 
-                console.log(this.state.userData.datasets[0].waterData)
-                console.log(data);
-                let tempUserData = this.state.userData;
-                tempUserData.datasets[0].waterData = data;
-                this.setState({tempUserData: data});   
+                let tempchartData = this.state.chartData;
+                tempchartData.datasets[0].data = totalWaterUsed;
+                this.setState({tempchartData: totalWaterUsed});  
+
+                let tempchartLabel = this.state.chartData;
+                tempchartData.labels = dateTime;
+                this.setState({tempchartLabel: dateTime}); 
             }) 
         });        
     }
 
-    componentWillUnmount() {     
-    }
-
     render() { 
-        console.log(this.state.userData.datasets[0].label);
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -73,13 +71,9 @@ export default class Main extends React.Component {
 
                     <hr/>
                     <h3>Your recent usage</h3>
-                    {console.log(this.state.userData.datasets[0].waterData)}
-                    {console.log(this.state.tempUserData)}
-                    <p>In Main.jsx {(this.state.userData.datasets[0].waterData) }</p>
-                   
-                    <Chart totalGallons={this.state.tempUserData}/>
-                    <Chart />
-
+                                  
+                    <Chart chartData={this.state.chartData}/>
+                    
                     <hr/>
                     <h3>Your neighborhood's usage</h3>
                 </div>
