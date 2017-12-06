@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import HeaderBar from './HeaderBar';
 import Chart from './Chart';
+import ReactMapboxGl from "react-mapbox-gl";
+
+const seattleCoordinates = [-122.3321, 47.6062];
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -61,6 +64,10 @@ export default class Main extends React.Component {
     }
 
     render() { 
+        const Map = ReactMapboxGl({
+            accessToken: 'pk.eyJ1IjoiY2Fyb3dhIiwiYSI6ImNqYW1ybTRvbTM1bTIzMW5xcXBjbjhwdngifQ.Wnchz3M1nnaXsifYVvGHAg'
+        });
+        
         return(
             <div>
                 <HeaderBar currentUser={this.state.currentUser} />
@@ -78,6 +85,7 @@ export default class Main extends React.Component {
                     
                     <hr/>
                     <h3>Your neighborhood's usage</h3>
+                    <Map id='map' style='mapbox://styles/mapbox/light-v9' center= {seattleCoordinates} containerStyle={{width: '400px', height: '300px'}}/>
                 </div>
             </div>
         );
