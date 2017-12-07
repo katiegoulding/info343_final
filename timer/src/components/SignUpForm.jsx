@@ -67,7 +67,7 @@ export default class SignUp extends React.Component {
                     <div className="alert alert-danger text-center">{this.state.errorMessage}</div> :
                     undefined
                 }
-                <div className="container text-center pl-1" id="SignInForm">
+                <div className="container text-center" id="SignInForm">
                     <p id="signInHeader"><span>Sign up</span></p>
                     <form onSubmit={evt => this.handleSignUp(evt)}>
                         <div id="inputSignin1" className="form-group">

@@ -46,7 +46,7 @@ export default class SignInForm extends React.Component {
         return(
             <div>
                 <HeaderBar2 />
-                <div className="container text-center pl-1" id="SignInForm">
+                <div className="container text-center" id="SignInForm">
                     <p id="signInHeader"><span>Log in</span></p>
 
                     <form onSubmit={evt => this.handleSignIn(evt)}>
