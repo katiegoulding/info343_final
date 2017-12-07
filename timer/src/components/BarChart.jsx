@@ -29,7 +29,8 @@ export default class BarChart extends React.Component {
                         title:{
                             display:true,
                             text:"Shower Duration",
-                            fontSize: 25
+                            fontSize: 25,
+                            fontFamily: "Avenir Next",
                         },
                         legened: {position: "right"},
                     }}

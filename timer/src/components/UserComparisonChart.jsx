@@ -23,7 +23,8 @@ export default class Chart extends React.Component {
                         title:{
                             display:true,
                             text:"Average Shower Length in Recent Months",
-                            fontSize: 25
+                            fontSize: 25,
+                            fontFamily: "Avenir Next"
                         },
                         scales: {
                             yAxes: [{

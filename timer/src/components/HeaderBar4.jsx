@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import "./style.css";
 
-export default class HeaderBar extends React.Component {
+export default class HeaderBar4 extends React.Component {
     handleSignOut(evt) {
         firebase.auth().signOut()
         .catch(err => this.setState({ errorMessage: err.message }))

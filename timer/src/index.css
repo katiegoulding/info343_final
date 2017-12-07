@@ -57,7 +57,7 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .active {
@@ -88,8 +88,9 @@ nav {
 
 
 #hero h1 {
+  font-family: "Avenir Next";
   font-size: 68pt;
-  font-weight: bold;
+  font-weight: 600;
   color: #2D213F;
   text-align: center;
   margin-top: 138px;
@@ -135,11 +136,13 @@ nav {
 }
 
 #hero p{
+  font-family: "Avenir Next";
   text-align:center;
   font-weight: 600;
 }
 
 #hero a{
+  font-family: "Avenir Next";
   color: #ffffff;
   text-decoration: none;
 }
@@ -150,18 +153,20 @@ nav {
 }
 
 #learn_more {
+  font-family: "Avenir Next";
   text-align: center;
 }
 
 #learn_more h3 {
-  font-weight: bold;
+  font-family: "Avenir Next";
+  font-weight: 600;
   font-size: 24pt;
   margin-top: 44px;
 }
 
 #underline {
   background-color: #2D213F;
-  height: 6px;
+  height: 5px;
   width: 180px;
   border-radius: 500px;
   margin: auto;
@@ -173,12 +178,14 @@ nav {
 }
 
 #learn_more h2 {
-  font-weight: bold;
+  font-family: "Avenir Next";
+  font-weight: 600;
   font-size: 20pt;
   margin-top:28px;
 }
 
 #learn_more p {
+  font-family: "Avenir Next";
   font-size: 14pt;
   margin-top:44px;
   color: #62596F;
@@ -200,16 +207,19 @@ nav {
 }
 
 #team {
+  font-family: "Avenir Next";
   text-align: center;
 }
 
 #team h3 {
-  font-weight: bold;
+  font-family: "Avenir Next";
+  font-weight: 600;
   font-size: 24pt;
   margin-top: 44px;
 }
 
 #team h4 {
+  font-family: "Avenir Next";
   font-size: 14pt;
   color: #2D213F;
   margin-top: 40px;
@@ -225,13 +235,15 @@ nav {
 }
 
 #team h2 {
+  font-family: "Avenir Next";
   font-size: 18pt;
-  font-weight: bold;
+  font-weight: 600;
   color: #2D213F;
   margin-top: 32px;
 }
 
 #team p {
+  font-family: "Avenir Next";
   font-size: 12pt;
   color: #62596F;
   margin-bottom: 64px;
@@ -255,7 +267,8 @@ nav {
   }
 
   #contact {
-    border: black 2px solid;
+    font-family: "Avenir Next";
+    border: transparent 1px solid;
     height: 224px;
     background-color: #211D27;
     color: #ffffff;
@@ -263,12 +276,14 @@ nav {
   }
 
   #contact h2 {
+    font-family: "Avenir Next";
     margin-top: 80px;
     margin-bottom: 64px;
     font-size: 18pt;
   }
 
   #contact p {
+    font-family: "Avenir Next";
     font-size: 12pt;
     font-weight: 100;
     float: left;

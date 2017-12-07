@@ -122,13 +122,11 @@ export default class Main extends React.Component {
                 <div className="container pl-1">
                     <div id="welcome" className="text-center">
                         <p id="welcomeHeader">Hello {this.state.currentUser.displayName}!</p>
+                        <p id="welcomeCost">You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </p> 
                     </div>
 
                     <hr/>
-                    <h3>Your Recent Usage</h3>
-                    <div id="myChart">       
-                    
-                        <h3>You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </h3>                                  
+                    <div id="myChart">                                        
                         <Chart chartData={this.state.chartData} />
 
                         <BarChart chartData={this.state.timerData} style="height: 400px"/>

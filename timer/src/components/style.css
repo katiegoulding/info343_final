@@ -1,3 +1,9 @@
+* {
+    font-family: "Avenir Next";
+}
+
+
+
 #SignInForm {
     padding-top:40px;
     width: 410px;
@@ -6,7 +12,7 @@
 
 #signInHeader {
     font-size: 16px;
-    font-weight:bold;
+    font-weight:600;
     overflow: hidden;
     text-align: center;
     color: #2D213F;
@@ -61,7 +67,7 @@
 
 #linktoSignup {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #2D213F;
 }
 
@@ -86,7 +92,7 @@
 
 #agreePolicy {
     padding-top:12px;
-    font-size: 10.85px;
+    font-size: 10.5px;
     color: #A7A2AE;
 }
 
@@ -271,7 +277,7 @@
 
 #resultHeader {
     font-size: 32px;
-    font-weight:bold;
+    font-weight:600;
     overflow: hidden;
     text-align: center;
     color: #2D213F;
@@ -312,9 +318,14 @@
 #welcomeHeader {
     padding:0px;
     font-size: 65px;
+    font-weight: 600;
 }
 #welcomeHeader1 {
     font-size: 50px;
+}
+
+#welcomeCost {
+    font-size: 24px;
 }
 
 #showerBtn {
