@@ -7,13 +7,6 @@ import constants from './constants'
 import HeaderBar from './HeaderBar'
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
 
-// TO DO:
-// Determine what happens when you click start without selecting a shower head
-// Push data after timer completes
-// Make calculations work
-// Findings:
-// Using secondsElapsed instead of seconds showered works, and slice(-2) capped the *string* to 2 decimal places!
-
 const formattedSeconds = (sec) =>
 Math.floor(sec / 60) +
   ':' +

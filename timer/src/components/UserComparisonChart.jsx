@@ -15,7 +15,13 @@ export default class Chart extends React.Component {
                 <Line
                     data={this.state.chartData}
                     options={{
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        }
                     }}
                 />
             </div>
