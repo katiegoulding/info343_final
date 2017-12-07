@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import "./style.css";
 
-export default class HeaderBar extends React.Component {
+export default class HeaderBar3 extends React.Component {
     handleSignOut(evt) {
         firebase.auth().signOut()
         .catch(err => this.setState({ errorMessage: err.message }))
@@ -21,6 +21,7 @@ export default class HeaderBar extends React.Component {
                         </Link>
                         <div id="myData-logOut" className="d-flex justify-content-between">
                             <Link to={constants.routes.main} id="linktoSignup" className="pt-1">Back to My Data</Link>  
+                            <Link to={constants.routes.about} id="linktoSignup" className="pt-1">About</Link>
                             <Link to={constants.routes.home} id="linktoSignup" className="pt-1">Log out</Link>
                         </div>
                 </div>                       

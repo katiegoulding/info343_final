@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import "./style.css";
 
-export default class HeaderBar extends React.Component {
+export default class HeaderBar2 extends React.Component {
     render() {
         return (
             <div id="headerBar2">

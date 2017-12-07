@@ -1,5 +1,6 @@
 import React from "react";
-import logo from '../images/weather.svg';
+import logo from '../images/splish+logo.png';
+import splish from '../images/Splish+logo_small.png';
 import { Link } from "react-router-dom";
 import firebase from "firebase/app";
 import constants from './constants';
@@ -13,10 +14,17 @@ export default class HeaderBar extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-light bg-light">
+            <nav className="navbar navbar-default bg-default">
                 <Link to={constants.routes.home} className="navbar-brand">
-                    <img src={logo} width="30" height="30" className="d-inline-block align-top" alt=""/>
+                <img src={logo} height="32px" className="d-inline-block align-top" alt=""/>
                 </Link>   
+                    <ul>
+                        
+                        <li><a href={constants.routes.signin}>Log in</a></li>
+                        <li><a href={constants.routes.signup}>Sign up</a></li>
+                        <li><a href="#Contact">Contact</a></li>
+                        <li><a href="#TheTeam">Team</a></li>
+                    </ul>
                 {(this.props.currentUser ? ( <button id="logout" className="btn btn-default" onClick={evt => this.handleSignOut(evt)}> Logout </button> ) : ( null ))}                     
             </nav>
         );

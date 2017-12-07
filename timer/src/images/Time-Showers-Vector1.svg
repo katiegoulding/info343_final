@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="46.3533387" y="59.2282913" width="18.2514193" height="82.8758754" rx="7"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-120.000000, -834.000000)">
+            <g id="Group-3" transform="translate(120.000000, 834.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-15" fill="#FFFFFF" x="0" y="0" width="200" height="200"></rect>
+                    <rect id="Rectangle-593" stroke="#5A626E" stroke-width="3.825" x="61.1939274" y="78.6283613" width="31.156887" height="34.1914566"></rect>
+                    <ellipse id="Oval-126" stroke="#5A626E" stroke-width="3.06" fill="#FFFFFF" cx="115.176399" cy="96.1042542" rx="38.4040281" ry="38.3966211"></ellipse>
+                    <path d="M109.092593,106.748862 L126.583536,77.0960259" id="Line" stroke="#BEC2FD" stroke-width="1.8" stroke-linecap="square"></path>
+                    <ellipse id="Oval-146" stroke="#BEC2FD" stroke-width="3.6" fill="#BEC2FD" cx="126.203298" cy="77.4761905" rx="3.04190322" ry="3.04131653"></ellipse>
+                    <path d="M115.176399,96.1042542 L136.849959,81.2778361" id="Line" stroke="#5A626E" stroke-width="3.6" stroke-linecap="round"></path>
+                    <ellipse id="Oval-145" stroke="#5A626E" stroke-width="3.6" fill="#5A626E" cx="115.176399" cy="96.1042542" rx="1.90118951" ry="1.90082283"></ellipse>
+                    <g id="Rectangle-593">
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <rect stroke="#5A626E" stroke-width="3.06" x="47.8833387" y="60.7582913" width="15.1914193" height="79.8158754" rx="7"></rect>
+                    </g>
+                    <path d="M115.176399,96.1042542 L102.24831,86.9803046" id="Line" stroke="#5A626E" stroke-width="3.6" stroke-linecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
