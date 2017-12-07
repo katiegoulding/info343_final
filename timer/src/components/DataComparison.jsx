@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import constants from './constants'
 import HeaderBar from './HeaderBar'
+import HeaderBar3 from './HeaderBar3';
 
 export default class DataComparison extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ export default class DataComparison extends React.Component {
     render() {
         return(
             <div>
-                <HeaderBar />
+                <HeaderBar3 />
                 <div className="container">
                     <h1>Data Comparison</h1>
                 </div>

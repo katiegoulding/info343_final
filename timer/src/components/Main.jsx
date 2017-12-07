@@ -4,10 +4,10 @@ import 'firebase/auth';
 import 'firebase/database';
 import { Link } from "react-router-dom";
 import constants from './constants';
-import HeaderBar3 from './HeaderBar3';
-import Chart from './Chart';
 import BarChart from './BarChart';
 import UserComparisonChart from './UserComparisonChart';
+import Chart from './Chart';
+import HeaderBar4 from './HeaderBar4';
 
 const seattleCoordinates = [-122.3321, 47.6062];
 
@@ -118,25 +118,23 @@ export default class Main extends React.Component {
     render() { 
         return(
             <div>
-                <HeaderBar3 currentUser={this.state.currentUser} />
-                <div className="container">
-                    <div id="welcome">
-                        <h1>Welcome, {this.state.currentUser.displayName}</h1>
-                    </div>
-
-                    <Link to={constants.routes.timer}><button className="btn btn-info">Take a shower</button></Link>
-
-                    <div>
-                        <h3>You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </h3>
+                <HeaderBar4 currentUser={this.state.currentUser} />
+                <div className="container pl-1">
+                    <div id="welcome" className="text-center">
+                        <p id="welcomeHeader">Hello {this.state.currentUser.displayName}!</p>
                     </div>
 
                     <hr/>
-                                  
-                    <Chart chartData={this.state.chartData} />
+                    <h3>Your Recent Usage</h3>
+                    <div id="myChart">       
+                    
+                        <h3>You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </h3>                                  
+                        <Chart chartData={this.state.chartData} />
 
-                    <BarChart chartData={this.state.timerData} style="height: 400px"/>
+                        <BarChart chartData={this.state.timerData} style="height: 400px"/>
 
-                    <UserComparisonChart chartData={this.state.comparisonData}/>
+                        <UserComparisonChart chartData={this.state.comparisonData}/>
+                    </div>
                 </div>
             </div>
         );

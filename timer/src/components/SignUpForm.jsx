@@ -62,7 +62,12 @@ export default class SignUp extends React.Component {
         return(
             <div>
                 <HeaderBar2 />
-                <div className="container text-center" id="SignInForm">
+                {
+                    this.state.errorMessage ?
+                    <div className="alert alert-danger text-center">{this.state.errorMessage}</div> :
+                    undefined
+                }
+                <div className="container text-center pl-1" id="SignInForm">
                     <p id="signInHeader"><span>Sign up</span></p>
                     <form onSubmit={evt => this.handleSignUp(evt)}>
                         <div id="inputSignin1" className="form-group">
@@ -95,6 +100,10 @@ export default class SignUp extends React.Component {
                                 onInput={(evt) => this.setState({passwordConfirm: evt.target.value})}
                             />                        
                         </div>
+                        {
+                            this.state.password === this.state.passwordConfirm ? null : 
+                            <p className="text-danger text-left"><small>Need to match the password</small></p>
+                        }
                         <div id="inputSignin2" className="form-group">
                             <input 
                                 id="displayName" 
@@ -119,7 +128,10 @@ export default class SignUp extends React.Component {
                             <p id="agreePolicy">If you click "Sign up", you agree to Splish's Terms & Conditions and Privacy Policy.</p>
                         </div>
                         <div id="inputSignin3"className="form-group">
-                            <button id="signupBtn" type="submit" className="btn btn-default">
+                            
+                            <button id="signupBtn" type="submit" className="btn btn-default" 
+                            disabled={((this.state.password === this.state.passwordConfirm) && 
+                                this.state.email != "" && this.state.displayName != "" && this.state.zipcode != "")? false: true}>
                                 Sign up
                             </button>
                         </div>

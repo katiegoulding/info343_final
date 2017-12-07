@@ -8,6 +8,6 @@ export default {
         dataComp: "/compare",
         timer: "/timer",
         settings: "/settings",
-        about: "/about",
+        about: "/about"
     }
 }
