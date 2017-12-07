@@ -1,0 +1,268 @@
+#SignInForm {
+    padding-top:40px;
+    width: 90%;
+}
+
+#signInHeader {
+    font-size: 16px;
+    font-weight:bold;
+    overflow: hidden;
+    text-align: center;
+    color: #2D213F;
+}
+#signInHeader:before, #signInHeader:after {
+    background-color: #A7A2AE;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+#signInHeader:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+#signInHeader:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+   
+
+#inputSignin1 {
+    margin-top: 16px;
+}
+
+#inputSignin1, #inputSignin2 {
+    margin-bottom: 12px;
+}
+
+#password, #email, #logInBtn {
+    height: 40px;
+    font-size:16px;
+}
+
+#inputSignin3 {
+    margin-bottom: 24px;
+}
+
+#logInBtn {
+    background-color: #4CD964;
+    color: white;
+    border-radius: 28px;
+    width:100%;
+}
+
+#signupBtn {
+    background-color: #3C89F8;
+    color: white;
+    border-radius: 28px;
+    width:100%;
+}
+
+#linktoSignup {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2D213F;
+}
+
+#signupLink {
+    color: #3C89F8;
+}
+
+#signinLink {
+    color: #4CD964;
+}
+
+#agreePolicyDiv {
+    margin-top:68px;
+    border-top: 0.5px solid #A7A2AE;
+}
+
+#agreePolicyDiv2 {
+    margin-top:14px;
+    margin-bottom: 14px;
+    border-top: 0.5px solid #A7A2AE;
+}
+
+#agreePolicy {
+    padding-top:12px;
+    font-size: 10.85px;
+    color: #A7A2AE;
+}
+
+
+#headerBar2 {
+    height:144px;
+    box-shadow: 0 0px 5px 0px #DBDBDB;
+}
+
+#headerBarLogo {
+    margin: auto;
+    text-align:center;
+    width: 50%;
+    height: 100%;
+}
+
+#LOGO {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#headerBar3{
+    height:60px;
+    box-shadow: 0 0px 5px 0px #DBDBDB;
+}
+
+#headerBarLogo2 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left:32px;
+    margin-right:32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#bar3 {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (min-width: 765px){
+    #SignInForm {
+        padding-top:40px;
+        width: 30%;
+    }
+}
+
+  #switch-left {
+    border-radius: 28px 0 0 28px;
+  }
+  
+  #switch-right {
+    border-radius: 0 28px 28px 0;
+  }
+
+  #switch-left, #switch-right {
+    width: 100px;
+    height:24px;
+    font-size: 12px;
+    text-align: center;
+    padding: 3px 14px;
+    cursor: pointer;
+    border: 0px;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    margin-bottom:12px;
+  }
+
+
+  #switch-leftlowFlow {
+    width: 100px;
+    height:24px;
+    font-size: 12px;
+    text-align: center;
+    padding: 3px 14px;
+    cursor: pointer;
+    border: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color:#007AFF;
+    border-radius: 28px 0 0 28px;
+    color:white;
+  }
+
+  #switch-rightregularFlow {
+    width: 100px;
+    height:24px;
+    font-size: 12px;
+    text-align: center;
+    padding: 3px 14px;
+    cursor: pointer;
+    border: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color:#007AFF;
+    border-radius: 0 28px 28px 0;
+    color:white;
+  }
+
+#timer {
+    width:410px;
+    text-align:center;
+    box-shadow: 0 0px 5px 0px #C5C5C5;
+    margin:auto;
+    margin-top:70px;
+    border-radius: 5px;
+}
+
+#timerBtn {
+    background-color: #2D213F;
+    height: 88px;
+    width:100%;
+    margin: 0px;
+    margin-top: 30px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#timeElapsed {
+   font-size: 72px;
+   color: #2D213F;
+   padding-top:30px;
+}
+
+#cardTop {
+    height:176px;
+}
+
+#startBtn {
+    background-color: #4CD964;
+    color: white;
+    border-radius: 28px;
+    font-size: 16px;
+    height:40px;
+    width: 120px;
+    border:0;
+}
+
+#pauseBtn {
+    background-color: red;
+    color: white;
+    border-radius: 28px;
+    font-size: 16px;
+    height:40px;
+    width: 120px;
+    border:0;
+}
+
+#doneBtn {
+    background-color: blue;
+    color: white;
+    border-radius: 28px;
+    font-size: 16px;
+    height:40px;
+    width: 120px;
+    border:0;
+}
+
+#result {
+    margin:auto;
+    text-align:center;
+    width: 410px;
+}
+
+
+#resultHeader {
+    font-size: 32px;
+    font-weight:bold;
+    overflow: hidden;
+    text-align: center;
+    color: #2D213F;
+}
+
+#myData-logOut {
+    width: 250px;
+}

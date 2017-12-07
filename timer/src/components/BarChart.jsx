@@ -1,7 +1,12 @@
 import React from "react";
-import {Line} from 'react-chartjs-2';
+// import firebase from "firebase/app";
+// import 'firebase/auth';
+// import 'firebase/database';
+// import { Link } from "react-router-dom";
+// import constants from './constants'
+import {Bar} from 'react-chartjs-2';
 
-export default class Chart extends React.Component {
+export default class BarChart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,27 +14,24 @@ export default class Chart extends React.Component {
         }
     }
     
+
     render() {      
         return(
             <div>               
-                <Line
+                <Bar
                     data={this.state.chartData}
                     options={{
-                        responsive: true,
-                        height: "750px",
                         legend: {
                             position: "bottom"
                         },
+                        responsive: true,
+                        height: "750px",
                         title:{
                             display:true,
-                            text:"Average Shower Length in Recent Months",
+                            text:"Shower Duration",
                             fontSize: 25
                         },
-                        scales: {
-                            yAxes: [{
-                                stacked: true
-                            }]
-                        }
+                        legened: {position: "right"},
                     }}
                 />
             </div>
