@@ -11,6 +11,7 @@ import MyData from './components/MyData';
 import DataComparison from './components/DataComparison';
 import Settings from './components/Settings';
 import Timer from './components/Timer';
+import About from './components/About';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path={constants.routes.dataComp} component={DataComparison} />
           <Route path={constants.routes.timer} component={Timer} />
           <Route path={constants.routes.settings} component={Settings} />
+          <Route path={constants.routes.about} component={About} />
         </Switch>
       </Router>
       </div>

@@ -1,6 +1,7 @@
 #SignInForm {
     padding-top:40px;
-    width: 90%;
+    width: 410px;
+    margin:auto;
 }
 
 #signInHeader {
@@ -27,8 +28,6 @@
     left: 0.5em;
     margin-right: -50%;
 }
-   
-
 #inputSignin1 {
     margin-top: 16px;
 }
@@ -91,7 +90,6 @@
     color: #A7A2AE;
 }
 
-
 #headerBar2 {
     height:144px;
     box-shadow: 0 0px 5px 0px #DBDBDB;
@@ -111,7 +109,7 @@
 }
 
 #headerBar3{
-    height:60px;
+    height:150px;
     box-shadow: 0 0px 5px 0px #DBDBDB;
 }
 
@@ -122,20 +120,24 @@
     margin-left:32px;
     margin-right:32px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
 }
+
+#everythingShower {
+    border: 1px solid black;
+    width: 850px;
+}
+
+#moreInfo {
+    width: 850px;
+    margin:auto;
+    justify-content: center;
+}
+
 
 #bar3 {
     display: flex;
     flex-direction: row;
-}
-
-@media (min-width: 765px){
-    #SignInForm {
-        padding-top:40px;
-        width: 30%;
-    }
 }
 
 #switch-left {
@@ -276,7 +278,11 @@
 }
 
 #myData-logOut {
-    width: 250px;
+    width: 300px;
+}
+
+#myData-logOut1 {
+    width: 180px;
 }
 
 #startBtn2 {
@@ -293,6 +299,9 @@
 
 #welcome {
     padding-top: 70px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
 }
 
 #myChart {
@@ -301,7 +310,11 @@
 }
 
 #welcomeHeader {
-    font-size: 70px;
+    padding:0px;
+    font-size: 65px;
+}
+#welcomeHeader1 {
+    font-size: 50px;
 }
 
 #showerBtn {
@@ -316,3 +329,74 @@
     box-shadow: none;
     cursor: pointer;
 }
+
+#aboutShowerhead {
+    width:410px;
+    height: 410px;
+    box-shadow: 0 0px 5px 0px #C5C5C5;
+}
+
+#ShowerheadGrid {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    margin:auto;
+    justify-content: center;
+}
+
+#moreInfo {
+    width: 410px;
+    margin:auto;
+    justify-content: center;
+}
+
+@media (min-width: 410px) {
+    #headerBar3{
+        height:60px;
+        box-shadow: 0 0px 5px 0px #DBDBDB;
+    }
+
+    #headerBarLogo2 {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left:32px;
+        margin-right:32px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #ShowerheadGrid {
+        display: flex;
+        flex-direction: row;
+        width: 850px;
+        margin:auto;
+        justify-content: center;
+    }
+
+    #aboutShowerhead {
+        width:410px;
+        height: 410px;
+        box-shadow: 0 0px 5px 0px #C5C5C5;
+    }
+    
+    #ShowerheadGrid {
+        display: flex;
+        flex-direction: row;
+        width: 850px;
+        margin:auto;
+        justify-content: center;
+    }
+    
+    #everythingShower {
+        border: 1px solid black;
+        width: 850px;
+    }
+    
+    #moreInfo {
+        width: 850px;
+        margin:auto;
+        justify-content: center;
+    }
+}   

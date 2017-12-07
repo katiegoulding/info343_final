@@ -95,7 +95,7 @@ export default class Main extends React.Component {
         return(
             <div>
                 <HeaderBar4 currentUser={this.state.currentUser} />
-                <div className="container">
+                <div className="container pl-1">
                     <div id="welcome" className="text-center">
                         <p id="welcomeHeader">Hello {this.state.currentUser.displayName}!</p>
                     </div>
