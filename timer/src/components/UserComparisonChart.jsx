@@ -5,25 +5,31 @@ export default class Chart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: props.chartData,           
+            chartData: props.chartData,
         }
     }
+    
     render() {      
         return(
             <div>               
                 <Line
                     data={this.state.chartData}
                     options={{
+                        responsive: true,
+                        height: "750px",
                         legend: {
                             position: "bottom"
                         },
-                        responsive: true,
-                        height: "750px",
                         title:{
-                            display: true,
-                            text:"Shower Water Use",
+                            display:true,
+                            text:"Average Shower Length in Recent Months",
                             fontSize: 25
                         },
+                        scales: {
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        }
                     }}
                 />
             </div>

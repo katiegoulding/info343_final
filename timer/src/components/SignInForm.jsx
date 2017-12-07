@@ -22,7 +22,8 @@ export default class SignInForm extends React.Component {
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({currentUser: user});
-        });        
+            console.log(this.state.currentUser);                   
+        }); 
     }
 
     componentWillUnmount() {
