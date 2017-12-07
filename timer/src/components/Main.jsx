@@ -4,17 +4,10 @@ import 'firebase/auth';
 import 'firebase/database';
 import { Link } from "react-router-dom";
 import constants from './constants';
-<<<<<<< HEAD
 import Chart from './Chart';
 import ReactMapboxGl from "react-mapbox-gl";
 import BarChart from './BarChart';
 import HeaderBar4 from './HeaderBar4';
-=======
-import HeaderBar3 from './HeaderBar3';
-import Chart from './Chart';
-import BarChart from './BarChart';
-import UserComparisonChart from './UserComparisonChart';
->>>>>>> 02f642d190bd6c1192dab1c7c852047d2ce86a5f
 
 const seattleCoordinates = [-122.3321, 47.6062];
 
@@ -125,7 +118,6 @@ export default class Main extends React.Component {
     render() { 
         return(
             <div>
-<<<<<<< HEAD
                 <HeaderBar4 currentUser={this.state.currentUser} />
                 <div className="container pl-1">
                     <div id="welcome" className="text-center">
@@ -143,30 +135,6 @@ export default class Main extends React.Component {
                     <hr/>
 
                     <h3>Your Neighborhood's Usage</h3>
-                    <div id="myChart">
-                        <Map id='map' style='mapbox://styles/mapbox/light-v9' center= {seattleCoordinates} containerStyle={{width: '400px', height: '300px'}}/>
-                    </div>
-=======
-                <HeaderBar3 currentUser={this.state.currentUser} />
-                <div className="container">
-                    <div id="welcome">
-                        <h1>Welcome, {this.state.currentUser.displayName}</h1>
-                    </div>
-
-                    <Link to={constants.routes.timer}><button className="btn btn-info">Take a shower</button></Link>
-
-                    <div>
-                        <h3>You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </h3>
-                    </div>
-
-                    <hr/>
-                                  
-                    <Chart chartData={this.state.chartData} />
-
-                    <BarChart chartData={this.state.timerData} style="height: 400px"/>
-
-                    <UserComparisonChart chartData={this.state.comparisonData}/>
->>>>>>> 02f642d190bd6c1192dab1c7c852047d2ce86a5f
                 </div>
             </div>
         );

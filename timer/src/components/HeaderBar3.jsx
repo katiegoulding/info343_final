@@ -19,15 +19,9 @@ export default class HeaderBar3 extends React.Component {
                         <Link to={constants.routes.main}>
                             <img src={logo} height="32px" className="d-inline-block align-top" alt=""/>
                         </Link>
-<<<<<<< HEAD
                         <div id="myData-logOut1" className="d-flex justify-content-between">
                             <Link to={constants.routes.main} id="linktoSignup" className="pt-1">Home</Link>
                             <Link to={constants.routes.about} id="linktoSignup" className="pt-1">About</Link>  
-=======
-                        <div id="myData-logOut" className="d-flex justify-content-between">
-                            <Link to={constants.routes.main} id="linktoSignup" className="pt-1">Back to My Data</Link>  
-                            <Link to={constants.routes.about} id="linktoSignup" className="pt-1">About</Link>
->>>>>>> 02f642d190bd6c1192dab1c7c852047d2ce86a5f
                             <Link to={constants.routes.home} id="linktoSignup" className="pt-1">Log out</Link>
                         </div>
                 </div>                       
