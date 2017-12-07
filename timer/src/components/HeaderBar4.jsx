@@ -20,8 +20,8 @@ export default class HeaderBar extends React.Component {
                             <img src={logo} height="32px" className="d-inline-block align-top" alt=""/>
                         </Link>
                         <div id="myData-logOut" className="d-flex justify-content-between">
-                            <Link to={constants.routes.main} id="linktoSignup" className="pt-1">Back to Home</Link>  
-                            <Link to={constants.routes.home} id="linktoSignup" className="pt-1">Log out</Link>
+                            <Link to={constants.routes.timer}><button type="button" id="showerBtn">Take a shower</button></Link> 
+                            <Link to={constants.routes.home} id="linktoSignup" className="pt-2">Log out</Link>
                         </div>
                 </div>                       
             </div>

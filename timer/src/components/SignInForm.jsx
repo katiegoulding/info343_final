@@ -56,7 +56,8 @@ export default class SignInForm extends React.Component {
                             <input id="password" type="password" className="form-control" placeholder="Password" onInput={evt => this.setState({password: evt.target.value})}/>
                         </div>
                         <div id="inputSignin3"className="form-group">
-                            <button id="logInBtn" type="submit" className="btn btn-default">
+                            <button id="logInBtn" type="submit" className="btn btn-default" 
+                            disabled={(this.state.email == "" || this.state.password == "")? true: false}>
                                 Log in
                             </button>
                         </div>

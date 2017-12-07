@@ -4,9 +4,10 @@ import 'firebase/auth';
 import 'firebase/database';
 import { Link } from "react-router-dom";
 import constants from './constants';
-import HeaderBar from './HeaderBar';
 import Chart from './Chart';
 import ReactMapboxGl from "react-mapbox-gl";
+import BarChart from './BarChart';
+import HeaderBar4 from './HeaderBar4';
 
 const seattleCoordinates = [-122.3321, 47.6062];
 
@@ -93,23 +94,26 @@ export default class Main extends React.Component {
         
         return(
             <div>
-                <HeaderBar currentUser={this.state.currentUser} />
+                <HeaderBar4 currentUser={this.state.currentUser} />
                 <div className="container">
-                    <div id="welcome">
-                        <h1>Welcome {this.state.currentUser.displayName}</h1>
+                    <div id="welcome" className="text-center">
+                        <p id="welcomeHeader">Hello {this.state.currentUser.displayName}!</p>
                     </div>
 
-                    <Link to={constants.routes.timer}><button className="btn btn-info">Take a shower</button></Link>
+                    <hr/>
+                    <h3>Your Recent Usage</h3>
+                    <div id="myChart">       
+                        <Chart chartData={this.state.chartData}/>
+                        <br></br>
+                        <br></br>
+                        <BarChart chartData={this.state.timerData}/>
+                    </div>
+                    <hr/>
 
-                    <hr/>
-                    <h3>Your recent usage</h3>
-                                  
-                    <Chart chartData={this.state.chartData}/>
-                    <BarChart chartData={this.state.timerData}/>
-                    
-                    <hr/>
-                    <h3>Your neighborhood's usage</h3>
-                    <Map id='map' style='mapbox://styles/mapbox/light-v9' center= {seattleCoordinates} containerStyle={{width: '400px', height: '300px'}}/>
+                    <h3>Your Neighborhood's Usage</h3>
+                    <div id="myChart">
+                        <Map id='map' style='mapbox://styles/mapbox/light-v9' center= {seattleCoordinates} containerStyle={{width: '400px', height: '300px'}}/>
+                    </div>
                 </div>
             </div>
         );
