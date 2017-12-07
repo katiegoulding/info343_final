@@ -357,6 +357,7 @@
 
 #moreInfo {
     width: 410px;
+    height: 230px;
     margin:auto;
     justify-content: center;
 }
@@ -385,28 +386,10 @@
         margin:auto;
         justify-content: center;
     }
-
-    #aboutShowerhead {
-        width:410px;
-        height: 410px;
-        box-shadow: 0 0px 5px 0px #C5C5C5;
-    }
-    
-    #ShowerheadGrid {
-        display: flex;
-        flex-direction: row;
-        width: 850px;
-        margin:auto;
-        justify-content: center;
-    }
-    
-    #everythingShower {
-        border: 1px solid black;
-        width: 850px;
-    }
     
     #moreInfo {
         width: 850px;
+        height: 180px;
         margin:auto;
         justify-content: center;
     }

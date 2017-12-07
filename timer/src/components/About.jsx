@@ -37,6 +37,7 @@ export default class About extends React.Component {
                         <p id="welcomeHeader1" className="m-0 p-0">All About</p>
                         <p id="welcomeHeader" className="m-0 p-0">Showerheads</p>
                     </div>
+                    
                     <hr/>
                         <div id="ShowerheadGrid" className="d-flex justify-content-between">
                             <div className="d-flex">
@@ -71,22 +72,18 @@ export default class About extends React.Component {
                                     </div>
                                 </div>
                             </div>
-
+                            
                         </div>
-                  
-                        <div id="moreInfo">
-                            <div className="alert alert-info mt-5" role="alert">
-                                <p><strong>If you are curious, check out these links for more information:</strong>
+                        <div className="alert alert-info mt-5 mb-5" id="moreInfo" role="alert">
+                                <p><strong>If you are curious, check out these links for more information:</strong></p>
+                                <div>
+                                    <p><a href = "https://www.epa.gov/watersense/showerheads">EPA: Showerheads</a></p>
+                                    <p><a href = "http://www.ecy.wa.gov/programs/wr/ws/wtrcnsv.html">Washington Department of Ecology: Water Conservation</a></p>
+                                    <p><a href = "http://www.seattle.gov/util/MyServices/Rates/WaterRates/ResidentialRates/index.htm">King County Water Rates</a></p>
+                                </div>
                                     
-                                    <li><a href = "https://www.epa.gov/watersense/showerheads">EPA: Showerheads</a></li>
-                                    <li><a href = "http://www.ecy.wa.gov/programs/wr/ws/wtrcnsv.html">Washington Department of Ecology: Water Conservation</a></li>
-                                    <li><a href = "http://www.seattle.gov/util/MyServices/Rates/WaterRates/ResidentialRates/index.htm">King County Water Rates</a></li>
-                                    
-                                </p>
-                            </div>
                         </div>
                     </div>
-
                 
             </div>
         );
