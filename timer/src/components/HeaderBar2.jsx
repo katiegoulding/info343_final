@@ -1,11 +1,11 @@
 import React from "react";
-import logo from '../images/splish+logo.png';
+import logo from '../images/Logo_Final.png';
 
 import { Link } from "react-router-dom";
 import constants from './constants';
 import "./style.css";
 
-export default class HeaderBar extends React.Component {
+export default class HeaderBar2 extends React.Component {
     render() {
         return (
             <div id="headerBar2">

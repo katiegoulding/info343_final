@@ -22,7 +22,8 @@ export default class SignInForm extends React.Component {
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({currentUser: user});
-        });        
+            console.log(this.state.currentUser);                   
+        }); 
     }
 
     componentWillUnmount() {
@@ -45,7 +46,7 @@ export default class SignInForm extends React.Component {
         return(
             <div>
                 <HeaderBar2 />
-                <div className="container text-center" id="SignInForm">
+                <div className="container text-center pl-1" id="SignInForm">
                     <p id="signInHeader"><span>Log in</span></p>
 
                     <form onSubmit={evt => this.handleSignIn(evt)}>
@@ -56,7 +57,8 @@ export default class SignInForm extends React.Component {
                             <input id="password" type="password" className="form-control" placeholder="Password" onInput={evt => this.setState({password: evt.target.value})}/>
                         </div>
                         <div id="inputSignin3"className="form-group">
-                            <button id="logInBtn" type="submit" className="btn btn-default">
+                            <button id="logInBtn" type="submit" className="btn btn-default" 
+                            disabled={(this.state.email == "" || this.state.password == "")? true: false}>
                                 Log in
                             </button>
                         </div>

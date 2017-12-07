@@ -5,14 +5,8 @@ import 'firebase/database';
 import constants from './constants';
 import HeaderBar3 from './HeaderBar3';
 import { Link } from "react-router-dom";
+import "./style.css";
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
-
-// TO DO:
-// Determine what happens when you click start without selecting a shower head
-// Push data after timer completes
-// Make calculations work
-// Findings:
-// Using secondsElapsed instead of seconds showered works, and slice(-2) capped the *string* to 2 decimal places!
 
 const formattedSeconds = (sec) =>
 Math.floor(sec / 60) +
@@ -184,7 +178,7 @@ export default class Timer extends React.Component {
                     </div>
                     <div id="timerBtn" className="card-body">
                         <div className="d-flex justify-content-around">
-                            {( (this.state.toggleLowFlow === "" && this.state.toggleRegular === "") ? null :
+                            {( (this.state.toggleLowFlow === "" && this.state.toggleRegular === "") ? <button id="startBtn2" disabled>START</button> :
                             (this.state.secondsElapsed === 0 ||
                                 this.incrementer === this.state.lastClearedIncrementer
                                 ? <button id="startBtn" onClick={this.handleStartClick.bind(this)}>START</button>
@@ -207,10 +201,11 @@ export default class Timer extends React.Component {
                         <div className="alert alert-primary" role="alert">
                             <p id="resultHeader"><span>Result</span></p> 
                             {/* correct gallons report */}
-                            <p>You used approximately { this.state.totalWaterUsed } gallons of water</p>
                             {( this.state.secondsShowered < 60 ? 
-                                <p>You showered for {this.state.secondsShowered} seconds. </p>
-                                : <p>You showered for {formattedResults(this.state.secondsShowered)} seconds</p> )}
+                                <p>You showered for <strong>{this.state.secondsShowered} seconds. </strong></p>
+                                : <p>You showered for <strong>{formattedResults(this.state.secondsShowered)} seconds</strong></p> 
+                            )}
+                            <p>You used approximately <strong>{ this.state.totalWaterUsed } gallons of water</strong></p>
                         </div>
                     : null)} 
                 </div>

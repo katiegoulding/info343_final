@@ -21,7 +21,18 @@ export default class BarChart extends React.Component {
                 <Bar
                     data={this.state.chartData}
                     options={{
-                        maintainAspectRatio: false
+                        legend: {
+                            position: "bottom"
+                        },
+                        responsive: true,
+                        height: "750px",
+                        title:{
+                            display:true,
+                            text:"Shower Duration",
+                            fontSize: 25,
+                            fontFamily: "Avenir Next",
+                        },
+                        legened: {position: "right"},
                     }}
                 />
             </div>

@@ -109,7 +109,7 @@ export default class Homepage extends React.Component {
                 </section>
                 <section id="contact">
                     <div className="container">
-                        <h2><a name="Contact">Questions or comments?< a href="mailto:support@splish.com">Let us know!</a></a></h2>
+                        <h2><a name="Contact">Questions or comments? < a href="mailto:support@splish.com">Let us know!</a></a></h2>
                         <p>Copyright © 2017</p>
                         <p>All Rights Reserved</p>
                         <p>Splish LLC</p>

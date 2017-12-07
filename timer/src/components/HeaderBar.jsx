@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../images/splish+logo_small_vector.svg';
+import logo from '../images/splish+logo.png';
 import splish from '../images/Splish+logo_small.png';
 import { Link } from "react-router-dom";
 import firebase from "firebase/app";
@@ -16,7 +16,7 @@ export default class HeaderBar extends React.Component {
         return (
             <nav className="navbar navbar-default bg-default">
                 <Link to={constants.routes.home} className="navbar-brand">
-                    <img src={logo} width="96" height="43" className="d-inline-block align-top" alt=""/>
+                <img src={logo} height="32px" className="d-inline-block align-top" alt=""/>
                 </Link>   
                     <ul>
                         

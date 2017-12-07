@@ -1,11 +1,18 @@
+* {
+    font-family: "Avenir Next";
+}
+
+
+
 #SignInForm {
     padding-top:40px;
-    width: 90%;
+    width: 410px;
+    margin:auto;
 }
 
 #signInHeader {
     font-size: 16px;
-    font-weight:bold;
+    font-weight:600;
     overflow: hidden;
     text-align: center;
     color: #2D213F;
@@ -27,8 +34,6 @@
     left: 0.5em;
     margin-right: -50%;
 }
-   
-
 #inputSignin1 {
     margin-top: 16px;
 }
@@ -62,7 +67,7 @@
 
 #linktoSignup {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #2D213F;
 }
 
@@ -87,10 +92,9 @@
 
 #agreePolicy {
     padding-top:12px;
-    font-size: 10.85px;
+    font-size: 10.5px;
     color: #A7A2AE;
 }
-
 
 #headerBar2 {
     height:144px;
@@ -111,7 +115,7 @@
 }
 
 #headerBar3{
-    height:60px;
+    height:150px;
     box-shadow: 0 0px 5px 0px #DBDBDB;
 }
 
@@ -122,31 +126,35 @@
     margin-left:32px;
     margin-right:32px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
 }
+
+#everythingShower {
+    border: 1px solid black;
+    width: 850px;
+}
+
+#moreInfo {
+    width: 850px;
+    margin:auto;
+    justify-content: center;
+}
+
 
 #bar3 {
     display: flex;
     flex-direction: row;
 }
 
-@media (min-width: 765px){
-    #SignInForm {
-        padding-top:40px;
-        width: 30%;
-    }
+#switch-left {
+    border-radius: 28px 0 0 28px;
+}
+  
+#switch-right {
+    border-radius: 0 28px 28px 0;
 }
 
-  #switch-left {
-    border-radius: 28px 0 0 28px;
-  }
-  
-  #switch-right {
-    border-radius: 0 28px 28px 0;
-  }
-
-  #switch-left, #switch-right {
+#switch-left, #switch-right {
     width: 100px;
     height:24px;
     font-size: 12px;
@@ -154,13 +162,14 @@
     padding: 3px 14px;
     cursor: pointer;
     border: 0px;
+    outline-style:none;
     -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     margin-bottom:12px;
-  }
+}
 
 
-  #switch-leftlowFlow {
+#switch-leftlowFlow {
     width: 100px;
     height:24px;
     font-size: 12px;
@@ -168,14 +177,15 @@
     padding: 3px 14px;
     cursor: pointer;
     border: 0px;
+    outline-style:none;
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color:#007AFF;
     border-radius: 28px 0 0 28px;
     color:white;
-  }
+}
 
-  #switch-rightregularFlow {
+#switch-rightregularFlow {
     width: 100px;
     height:24px;
     font-size: 12px;
@@ -183,12 +193,13 @@
     padding: 3px 14px;
     cursor: pointer;
     border: 0px;
+    outline-style:none;
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color:#007AFF;
     border-radius: 0 28px 28px 0;
     color:white;
-  }
+}
 
 #timer {
     width:410px;
@@ -226,6 +237,9 @@
     height:40px;
     width: 120px;
     border:0;
+    outline: none !important;
+    box-shadow: none;
+    cursor: pointer;
 }
 
 #pauseBtn {
@@ -236,6 +250,9 @@
     height:40px;
     width: 120px;
     border:0;
+    outline: none !important;
+    box-shadow: none;
+    cursor: pointer;
 }
 
 #doneBtn {
@@ -246,6 +263,9 @@
     height:40px;
     width: 120px;
     border:0;
+    outline: none !important;
+    box-shadow: none;
+    cursor: pointer;
 }
 
 #result {
@@ -257,12 +277,120 @@
 
 #resultHeader {
     font-size: 32px;
-    font-weight:bold;
+    font-weight:600;
     overflow: hidden;
     text-align: center;
     color: #2D213F;
 }
 
 #myData-logOut {
-    width: 250px;
+    width: 300px;
 }
+
+#myData-logOut1 {
+    width: 180px;
+}
+
+#startBtn2 {
+    background-color: #72b17c;
+    color: white;
+    border-radius: 28px;
+    font-size: 16px;
+    height:40px;
+    width: 120px;
+    border:0;
+    outline: none !important;
+    box-shadow: none;
+}
+
+#welcome {
+    padding-top: 70px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+
+#myChart {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#welcomeHeader {
+    padding:0px;
+    font-size: 65px;
+    font-weight: 600;
+}
+#welcomeHeader1 {
+    font-size: 50px;
+}
+
+#welcomeCost {
+    font-size: 24px;
+}
+
+#showerBtn {
+    background-color: #2D213F;
+    color: white;
+    border-radius: 28px;
+    font-size: 16px;
+    height:40px;
+    width: 150px;
+    border:0;
+    outline: none !important;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+#aboutShowerhead {
+    width:410px;
+    height: 410px;
+    box-shadow: 0 0px 5px 0px #C5C5C5;
+}
+
+#ShowerheadGrid {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    margin:auto;
+    justify-content: center;
+}
+
+#moreInfo {
+    width: 410px;
+    height: 230px;
+    margin:auto;
+    justify-content: center;
+}
+
+@media (min-width: 410px) {
+    #headerBar3{
+        height:60px;
+        box-shadow: 0 0px 5px 0px #DBDBDB;
+    }
+
+    #headerBarLogo2 {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left:32px;
+        margin-right:32px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #ShowerheadGrid {
+        display: flex;
+        flex-direction: row;
+        width: 850px;
+        margin:auto;
+        justify-content: center;
+    }
+    
+    #moreInfo {
+        width: 850px;
+        height: 180px;
+        margin:auto;
+        justify-content: center;
+    }
+}   

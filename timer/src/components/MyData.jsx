@@ -4,7 +4,8 @@ import 'firebase/auth';
 import 'firebase/database';
 import constants from './constants'
 import Chart from './Chart';
-import HeaderBar from './HeaderBar';
+import HeaderBar3 from './HeaderBar3';
+import "./style.css";
 
 export default class MyData extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class MyData extends React.Component {
         console.log(this.props.currentuser);
         return(
             <div>
-                <HeaderBar />
+                <HeaderBar3 />
                 <div className="container">
                     <h1>My Data</h1>
                     
