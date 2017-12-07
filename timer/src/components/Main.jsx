@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import constants from './constants';
 import HeaderBar from './HeaderBar';
 import Chart from './Chart';
+import BarChart from './BarChart';
 import ReactMapboxGl from "react-mapbox-gl";
 
 const seattleCoordinates = [-122.3321, 47.6062];
@@ -38,7 +39,8 @@ export default class Main extends React.Component {
                   }
                 ]
             },
-            currentUser: ""
+            currentUser: "",
+            cumSum: null,
         }
     }
 
@@ -65,7 +67,14 @@ export default class Main extends React.Component {
                     })
                 } 
                 let tempchartData = this.state.chartData;
-                tempchartData.datasets[0].data = totalWaterUsed;
+                //Create cumulative sum of gallons used per user
+                for(let i = 0; i < totalWaterUsed.length; i++) {
+                    this.state.cumSum += totalWaterUsed[i]
+                }
+                //@ $0.01/gallon, multiply total gallons by cost to get total cost
+                //Fudged cost to $0.30/gallon
+                this.state.cumSum = (this.state.cumSum * .30).toFixed(2);
+                
                 this.setState({tempchartData: totalWaterUsed});  
 
                 let tempchartLabel = this.state.chartData;
@@ -79,9 +88,7 @@ export default class Main extends React.Component {
                 let tempTimerChart = this.state.timerData;
                 tempTimerChart.datasets[0].data = totalTime;
                 this.setState({tempTimerChart: totalTime});
-                console.log(this.state.timerData)
             }) 
-            console.log("current user in main: " + user.displayName);
         });     
         
     }
@@ -101,12 +108,15 @@ export default class Main extends React.Component {
 
                     <Link to={constants.routes.timer}><button className="btn btn-info">Take a shower</button></Link>
 
+                    <div>
+                        <h3>You have spent ${this.state.cumSum} </h3>
+                    </div>
+
                     <hr/>
                     <h3>Your recent usage</h3>
                                   
                     <Chart chartData={this.state.chartData}/>
                     <BarChart chartData={this.state.timerData}/>
-                    
                     <hr/>
                     <h3>Your neighborhood's usage</h3>
                     <Map id='map' style='mapbox://styles/mapbox/light-v9' center= {seattleCoordinates} containerStyle={{width: '400px', height: '300px'}}/>

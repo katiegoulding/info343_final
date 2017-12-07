@@ -21,6 +21,7 @@ export default class HeaderBar extends React.Component {
                         </Link>
                         <div id="myData-logOut" className="d-flex justify-content-between">
                             <Link to={constants.routes.main} id="linktoSignup" className="pt-1">Back to My Data</Link>  
+                            <Link to={constants.routes.about} id="linktoSignup" className="pt-1">About</Link>
                             <Link to={constants.routes.home} id="linktoSignup" className="pt-1">Log out</Link>
                         </div>
                 </div>                       
