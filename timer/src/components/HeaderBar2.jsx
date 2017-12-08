@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../images/Logo_Final.png';
+import logo from '../images/splish+logo.png';
 
 import { Link } from "react-router-dom";
 import constants from './constants';

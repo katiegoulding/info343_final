@@ -1,6 +1,5 @@
 import React from "react";
 import logo from '../images/splish+logo.png';
-import splish from '../images/Splish+logo_small.png';
 import { Link } from "react-router-dom";
 import firebase from "firebase/app";
 import constants from './constants';
@@ -19,7 +18,6 @@ export default class HeaderBar extends React.Component {
                 <img src={logo} height="32px" className="d-inline-block align-top" alt=""/>
                 </Link>   
                     <ul>
-                        
                         <li><a href={constants.routes.signin}>Log in</a></li>
                         <li><a href={constants.routes.signup}>Sign up</a></li>
                         <li><a href="#Contact">Contact</a></li>

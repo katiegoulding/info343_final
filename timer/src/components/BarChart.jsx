@@ -1,9 +1,4 @@
 import React from "react";
-// import firebase from "firebase/app";
-// import 'firebase/auth';
-// import 'firebase/database';
-// import { Link } from "react-router-dom";
-// import constants from './constants'
 import {Bar} from 'react-chartjs-2';
 
 export default class BarChart extends React.Component {
@@ -14,7 +9,6 @@ export default class BarChart extends React.Component {
         }
     }
     
-
     render() {      
         return(
             <div>               

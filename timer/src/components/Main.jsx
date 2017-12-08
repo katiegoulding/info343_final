@@ -2,14 +2,11 @@ import React from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
-import { Link } from "react-router-dom";
 import constants from './constants';
 import BarChart from './BarChart';
 import UserComparisonChart from './UserComparisonChart';
 import Chart from './Chart';
 import HeaderBar4 from './HeaderBar4';
-
-const seattleCoordinates = [-122.3321, 47.6062];
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -86,19 +83,15 @@ export default class Main extends React.Component {
                     })
                 } 
                 
-                //Create cumulative sum of gallons used per user
                 for(let i = 0; i < totalWaterUsed.length; i++) {
-                    this.state.cumSum += totalWaterUsed[i]
+                    this.setState({ cumSum: this.state.cumSum + totalWaterUsed[i] })
                 }
-                //@ $0.01/gallon, multiply total gallons by cost to get total cost
-                //Fudged cost to $0.30/gallon
-                this.state.cumSum = (this.state.cumSum * .30).toFixed(2);
+                this.setState({ cumSum: (this.state.cumSum * .20).toFixed(2) })
             
                 let tempchartData = this.state.chartData;
                 tempchartData.datasets[0].data = totalWaterUsed;
                 this.setState({tempchartData: totalWaterUsed});  
 
-                let tempchartLabel = this.state.chartData;
                 tempchartData.labels = dateTime;
                 this.setState({tempchartLabel: dateTime}); 
 
@@ -110,10 +103,10 @@ export default class Main extends React.Component {
                 let tempTimerChart = this.state.timerData;
                 tempTimerChart.datasets[0].data = totalTime;
                 this.setState({tempTimerChart: totalTime});
-                console.log(this.state.timerData) 
             }) 
         });       
     }
+
 
     render() { 
         return(
@@ -122,16 +115,13 @@ export default class Main extends React.Component {
                 <div className="container pl-1">
                     <div id="welcome" className="text-center">
                         <p id="welcomeHeader">Hello {this.state.currentUser.displayName}!</p>
-                        <p id="welcomeCost">You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </p> 
+                        <p id="welcomeCost"> You have spent ${ !(this.state.cumSum) ? null : this.state.cumSum } </p> 
                     </div>
-
                     <hr/>
                     <div id="myChart">                                        
                         <Chart chartData={this.state.chartData} />
-
-                        <BarChart chartData={this.state.timerData} style="height: 400px"/>
-
-                        <UserComparisonChart chartData={this.state.comparisonData}/>
+                        <BarChart chartData={this.state.timerData} />
+                        <UserComparisonChart chartData={this.state.comparisonData} />
                     </div>
                 </div>
             </div>

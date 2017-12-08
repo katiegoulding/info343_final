@@ -20,7 +20,6 @@ export default class MyData extends React.Component {
             this.setState({
                 currentUser: user, 
             });            
-            console.log(this.state.currentUser)
             if(this.state.currentUser === null) {
                 this.props.history.push(constants.routes.home);
             }
@@ -32,7 +31,6 @@ export default class MyData extends React.Component {
     }
 
     render() {
-        console.log(this.props.currentuser);
         return(
             <div>
                 <HeaderBar3 />

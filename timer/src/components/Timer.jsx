@@ -4,7 +4,6 @@ import 'firebase/auth';
 import 'firebase/database';
 import constants from './constants';
 import HeaderBar3 from './HeaderBar3';
-import { Link } from "react-router-dom";
 import "./style.css";
 
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
@@ -35,52 +34,49 @@ export default class Timer extends React.Component {
           toggleRegular: "",
           selectedLowFlow: "",
           selectedRegular: "",
-          pause: false
+          pause: false,
+          GPM: 0,
+          timeEntered: 0,
         };
         this.incrementer = null;
     }  
 
     yesLowFlow(evt) {
-        //evt.preventDefault();        
+        evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: true,
                 regularShowerHead: false,
                 toggleLowFlow: "lowFlow",
-                toggleRegular: ""
+                toggleRegular: "",
+                GPM: (2).toFixed(1),
             })
         }
     }
 
     yesRegular(evt) {
-        //evt.preventDefault();        
+        evt.preventDefault();        
         if(this.state.secondsElapsed === 0) {
             this.setState({
                 lowFlowShowerHead: false,
                 regularShowerHead: true,
                 toggleLowFlow: "",
-                toggleRegular: "regularFlow"
+                toggleRegular: "regularFlow",
+                GPM: 2.5,
             })
         }
     }
 
     handleStartClick() {
-        //preventDefault();        
-        if (this.state.toggleLowFlow === " active") {
-            this.setState({
-                toggleLowFlow: " disabled",
-                toggleRegular: " disabled",
-                selectedLowFlow: " btn-info",
-                selectedRegular: ""
-            })
-        } else if (this.state.toggleRegular === " active") {
-            this.setState({
-                toggleLowFlow: " disabled",
-                toggleRegular: " disabled",
-                selectedLowFlow: "",
-                selectedRegular: " btn-info"
-            })
+        //preventDefault();   
+        //UGHHHH... the onChange evt is one off -- once typed into, the box is never
+        //null or "", just holds last number entered and therefore unable
+        //to make the default "standard" shower head toggle look clicked when
+        //a user deletes an inputted gpm     
+        if (this.state.toggleLowFlow === "" && this.state.toggleRegular === "") {
+            this.setState({toggleRegular: ""})            
         }
+
         this.incrementer = setInterval( () =>
           this.setState({
             secondsElapsed: this.state.secondsElapsed + 1,
@@ -101,8 +97,11 @@ export default class Timer extends React.Component {
         })
 
         let waterMultiplier;
+
         if(this.state.lowFlowShowerHead) {
             waterMultiplier = (1.0 / 30.0);
+        } else if (this.state.GPM > 0) {
+            waterMultiplier = (this.state.GPM  /  60.0);
         } else {
             waterMultiplier = (2.5 / 60.0);
         }
@@ -149,6 +148,14 @@ export default class Timer extends React.Component {
         });        
     }
 
+    enterGPM(evt) {
+        evt.preventDefault();
+        this.setState({ 
+            toggleLowFlow: "",
+            toggleRegular: "", 
+        })       
+    }
+
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({
@@ -176,10 +183,19 @@ export default class Timer extends React.Component {
                                 <button id={"switch-left" + this.state.toggleLowFlow} type="button" onClick={evt => this.yesLowFlow(evt)}>Low-Flow</button>
                                 <button id={"switch-right" + this.state.toggleRegular} type="button" onClick={evt => this.yesRegular(evt)}>Regular</button>
                             </div>
+                           
                     </div>
+                    <form className="p-4" onChange={evt => this.enterGPM(evt)}>
+                        Or enter the gallons per minute your shower head produces.
+                        <input type="text" 
+                            className="form-control text-center"
+                            value={this.state.GPM}
+                            onChange={evt => this.setState({GPM: evt.target.value})} 
+                        />
+                    </form>
                     <div id="timerBtn" className="card-body">
                         <div className="d-flex justify-content-around">
-                            {( (this.state.toggleLowFlow === "" && this.state.toggleRegular === "") ? <button id="startBtn2" disabled>START</button> :
+                            {( (this.state.GPM === 0 && this.state.toggleLowFlow === "" && this.state.toggleRegular === "") ? <button id="startBtn2" disabled>START</button> :
                             (this.state.secondsElapsed === 0 ||
                                 this.incrementer === this.state.lastClearedIncrementer
                                 ? <button id="startBtn" onClick={this.handleStartClick.bind(this)}>START</button>
@@ -201,7 +217,6 @@ export default class Timer extends React.Component {
                     {( this.state.reset === true  ?
                         <div className="alert alert-primary" role="alert">
                             <p id="resultHeader"><span>Result</span></p> 
-                            {/* correct gallons report */}
                             {( this.state.secondsShowered < 60 ? 
                                 <p>You showered for <strong>{this.state.secondsShowered} seconds. </strong></p>
                                 : <p>You showered for <strong>{formattedResults(this.state.secondsShowered)} seconds</strong></p> 
