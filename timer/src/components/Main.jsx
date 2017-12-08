@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import constants from './constants';
 import BarChart from './BarChart';
-import UserComparisonChart from './UserComparisonChart';
+// import UserComparisonChart from './UserComparisonChart';
 import Chart from './Chart';
 import HeaderBar4 from './HeaderBar4';
 
