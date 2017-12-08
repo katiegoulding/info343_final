@@ -62,7 +62,7 @@ export default class Main extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {         
             this.setState({
                 currentUser: user,
@@ -111,8 +111,61 @@ export default class Main extends React.Component {
                 tempTimerChart.datasets[0].data = totalTime;
                 this.setState({tempTimerChart: totalTime});
                 console.log(this.state.timerData) 
-            }) 
-        });       
+            })
+        });
+    }
+
+    componentDidMount() {
+        // this.authUnsub = firebase.auth().onAuthStateChanged(user => {         
+        //     this.setState({
+        //         currentUser: user,
+        //     });
+
+        //     if(this.state.currentUser === null) {
+        //         this.props.history.push(constants.routes.home);
+        //     } 
+
+        //     firebase.database().ref("zipcode/" + (this.state.currentUser.photoURL) + "/" + (this.state.currentUser.uid) + "/usage").once('value').then(snapshot => {
+        //         let totalWaterUsed = [];
+        //         let totalTime = [];
+        //         let dateTime = [];
+        //         let showers = snapshot.val();
+        //         if(showers !== null) {
+        //             Object.keys(showers).forEach(key => {
+        //                 totalWaterUsed.push(showers[key].totalWaterUsed);
+        //                 totalTime.push(showers[key].showerLength / 60);
+        //                 let formattedDate = key[0] + key[1] + "-" + key[2] + key[3] + " " + key[4] + key[5] + ":" + key[6] + key[7];
+        //                 dateTime.push(formattedDate);
+        //             })
+        //         } 
+                
+        //         //Create cumulative sum of gallons used per user
+        //         for(let i = 0; i < totalWaterUsed.length; i++) {
+        //             this.state.cumSum += totalWaterUsed[i]
+        //         }
+        //         //@ $0.01/gallon, multiply total gallons by cost to get total cost
+        //         //Fudged cost to $0.30/gallon
+        //         this.state.cumSum = (this.state.cumSum * .30).toFixed(2);
+            
+        //         let tempchartData = this.state.chartData;
+        //         tempchartData.datasets[0].data = totalWaterUsed;
+        //         this.setState({tempchartData: totalWaterUsed});  
+
+        //         let tempchartLabel = this.state.chartData;
+        //         tempchartData.labels = dateTime;
+        //         this.setState({tempchartLabel: dateTime}); 
+
+
+        //         let tempTimerChartLabel = this.state.timerData;
+        //         tempTimerChartLabel.labels = dateTime;
+        //         this.setState({tempTimerChartLabel: dateTime}); 
+
+        //         let tempTimerChart = this.state.timerData;
+        //         tempTimerChart.datasets[0].data = totalTime;
+        //         this.setState({tempTimerChart: totalTime});
+        //         console.log(this.state.timerData) 
+        //      }) 
+        //});       
     }
 
     render() { 
