@@ -6,6 +6,7 @@ import constants from './constants';
 import HeaderBar3 from './HeaderBar3';
 import { Link } from "react-router-dom";
 import "./style.css";
+
 // Thank you to Seoh Char for the CodePen timer: https://codepen.io/seoh/pen/PPZYQy?editors=0110
 
 const formattedSeconds = (sec) =>
@@ -168,7 +169,7 @@ export default class Timer extends React.Component {
             <div>
                 <HeaderBar3 currentUser={this.state.currentUser}/>
                 <div id="timer" className="card border-light">
-                    <div id="cardTop">
+                    <div id="cardTop" className="pt-4">
                             <h1 id="timeElapsed"className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
                             <p>What kind of showerhead do you have?</p>
                             <div className="btn-group" role="group" data-toggle="buttons" aria-label="Choose Showerhead">
