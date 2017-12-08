@@ -5,9 +5,6 @@ import HeaderBar from "./HeaderBar";
 import TimeShowersVector from "../images/Time-Showers-Vector1.svg";
 import SaveMoneyVector from "../images/Save-Money-Vector1.svg";
 import RealAnalyticsVector from "../images/Real-Analytics-Vector1.svg";
-//import ActivePic from "../images/active pic.png";
-//import InActivePic from "../images/Inactive pic.png";
-//import BackgroundVector from "../images/Background-Vector.svg";
 
 import MatthewPic from "../images/Matthew_Pic.jpg";
 import KatiePic from "../images/Katie_Pic.jpg";
@@ -17,19 +14,15 @@ import AmandaPic from "../images/Amanda_Pic.jpg";
 export default class Homepage extends React.Component {
     render() {
         return(
-            
-            <div>
-                
+            <div>               
                 <HeaderBar />
                 <section id="hero">
                     <div className="container">
                         <h1>Every Drop Counts.</h1>
                         
-                        <div href="#whatWeDo" className="learnMoreBtn"> {/*id=nav*/}
-                        {/*<a href="#whatWeDo">1</a>*/}
+                        <div href="#whatWeDo" className="learnMoreBtn">
                         <button className="btn btn-success"><a href="#whatWeDo">Learn more</a></button> 
                         </div>
-                        {/*<button className="btn btn-default"> <Link to={constants.routes.signup}> Sign Up </Link> </button>*/}
                         <p> Be part of the change. Sign up <Link to={constants.routes.signup}><span id="now">now</span></Link>!</p> 
                     </div>
                 </section>
@@ -115,13 +108,9 @@ export default class Homepage extends React.Component {
                         <p>Splish LLC</p>
                     </div>
                 </section>
-                {/*
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <script type="text/javascript" src="animate.js"></script>
-                */}
-                
+
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script> 
-            <   script src="jquery.localscroll.js" type="text/javascript"></script> 
+                <script src="jquery.localscroll.js" type="text/javascript"></script> 
                 <script src="jquery.animate.js" type="text/javascript"></script> 
             </div>
             

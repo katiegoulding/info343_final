@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 10</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="10.8173077" y="134.134615" width="19.4711538" height="38.9423077" rx="9.73557692"></rect>
+        <rect id="path-2" x="0" y="153.605769" width="181.730769" height="19.4711538" rx="6"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-10">
+            <rect id="Rectangle-23" fill="#FFFFFF" x="0" y="0" width="300" height="300"></rect>
+            <g id="Group-8" transform="translate(59.000000, 38.000000)">
+                <path d="M20.2937839,164.047539 L20.2937839,40.0240385" id="Line" stroke="#5A626E" stroke-width="6" stroke-linecap="round"></path>
+                <g id="Rectangle-593">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#5A626E" stroke-width="6.12" x="13.8773077" y="137.194615" width="13.3511538" height="32.8223077" rx="6.67557692"></rect>
+                </g>
+                <path d="M78.7072455,94.8167699 L78.7072455,72.4759615" id="Line" stroke="#BEC2FD" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M104.668784,140.249462 L104.668784,117.908654" id="Line" stroke="#BEC2FD" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M91.6880147,122.235577 L91.6880147,85.4567308" id="Line" stroke="#BEC2FD" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M104.668784,89.7836538 L104.668784,53.0048077" id="Line" stroke="#BEC2FD" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M12.9635185,168.75 C24.4283902,200.904503 55.1493875,223.920163 91.2470171,223.920163 C127.344647,223.920163 158.065644,200.904503 169.530516,168.75 L12.9635148,168.75 Z" id="Combined-Shape" stroke="#5A626E" stroke-width="6" fill="#FFFFFF" stroke-linejoin="round"></path>
+                <ellipse id="Oval-145" stroke="#5A626E" stroke-width="7.2" fill="#5A626E" cx="43.0554581" cy="220.458511" rx="4.11315038" ry="4.11235708"></ellipse>
+                <ellipse id="Oval-145" stroke="#5A626E" stroke-width="7.2" fill="#5A626E" cx="140.411227" cy="220.458511" rx="4.11315038" ry="4.11235708"></ellipse>
+                <g id="Rectangle-20">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#5A626E" stroke-width="6" x="3" y="156.605769" width="175.730769" height="13.4711538" rx="6"></rect>
+                </g>
+                <path d="M106.875053,43.2692308 C106.875053,19.3722945 87.5027583,0 63.605822,0 C39.7088858,0 20.3365913,19.3722945 20.3365913,43.2692308" id="Oval-126" stroke="#5A626E" stroke-width="6"></path>
+                <path d="M69.2307692,28.125 C69.2307692,16.1765319 78.9169165,6.49038462 90.8653846,6.49038462 C102.813853,6.49038462 112.5,16.1765319 112.5,28.125 L112.5,42.5480769 L69.2307692,42.5480769 L69.2307692,28.125 Z" id="Combined-Shape" stroke="#5A626E" stroke-width="6" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

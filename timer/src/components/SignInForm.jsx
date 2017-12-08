@@ -4,7 +4,6 @@ import 'firebase/auth';
 import 'firebase/database';
 import { Link } from "react-router-dom";
 import constants from './constants';
-import HeaderBar from './HeaderBar';
 import "./style.css";
 import HeaderBar2 from './HeaderBar2';
 
@@ -22,7 +21,6 @@ export default class SignInForm extends React.Component {
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({currentUser: user});
-            console.log(this.state.currentUser);                   
         }); 
     }
 
@@ -36,7 +34,6 @@ export default class SignInForm extends React.Component {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .catch(err => this.setState({errorMessage: err.message}));        
         
-        // More secure way to do this than an if statement?
         if(this.state.currentUser) {
             this.props.history.push(constants.routes.main);
         } 
@@ -46,7 +43,7 @@ export default class SignInForm extends React.Component {
         return(
             <div>
                 <HeaderBar2 />
-                <div className="container text-center pl-1" id="SignInForm">
+                <div className="container text-center" id="SignInForm">
                     <p id="signInHeader"><span>Log in</span></p>
 
                     <form onSubmit={evt => this.handleSignIn(evt)}>
@@ -58,7 +55,7 @@ export default class SignInForm extends React.Component {
                         </div>
                         <div id="inputSignin3"className="form-group">
                             <button id="logInBtn" type="submit" className="btn btn-default" 
-                            disabled={(this.state.email == "" || this.state.password == "")? true: false}>
+                            disabled={(this.state.email === "" || this.state.password === "")? true : false}>
                                 Log in
                             </button>
                         </div>

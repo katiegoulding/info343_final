@@ -3,17 +3,9 @@ import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
 import constants from './constants'
-import HeaderBar from './HeaderBar'
 import HeaderBar3 from './HeaderBar3';
 
 export default class DataComparison extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        
-        }
-    }
-
     componentDidMount() {
         this.authUnsub = firebase.auth().onAuthStateChanged(user => {
             this.setState({
